@@ -5,6 +5,11 @@ Page({
   data: {
     logs: []
   },
+  bindViewTap: function () {
+    wx.navigateTo({
+      url: '../track/track'
+    })
+  },
   onLoad: function () {
     this.setData({
       logs: (wx.getStorageSync('logs') || []).map(log => {

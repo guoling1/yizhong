@@ -1,12 +1,52 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/community/community",
+    "pages/track/track",
+    "pages/mailList/mailList",
+    "pages/my/my"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#d7dbe4",
+    "selectedColor": "#565656",
+    "list": [
+      {
+        "selectedIconPath": "images/tab1.png",  
+        "iconPath": "images/tab1.png",
+        "pagePath": "pages/index/index",
+        "text": "校友足迹"
+      },
+      {
+        "selectedIconPath": "images/tab21.png",
+        "iconPath": "images/tab2.png",
+        "pagePath": "pages/community/community",
+        "text": "校友圈子"
+      },
+      {
+        "selectedIconPath": "images/tabm.png",
+        "iconPath": "images/tabm.png",
+        "pagePath": "pages/logs/logs",
+        "text": ""
+      },
+      {
+        "selectedIconPath": "images/tab31.png",
+        "iconPath": "images/tab3.png",
+        "pagePath": "pages/mailList/mailList",
+        "text": "通讯录"
+      },
+      {
+        "selectedIconPath": "images/tab41.png",
+        "iconPath": "images/tab4.png",
+        "pagePath": "pages/my/my",
+        "text": "个人中心"
+      }
+    ]
   }
 }
