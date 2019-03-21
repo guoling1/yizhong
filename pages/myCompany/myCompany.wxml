@@ -1,0 +1,10 @@
+<!--pages/myCompany/myCompany.wxml-->
+<view class='item'>
+  <text class='title' decode='{{true}}'>公&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;司</text>
+  <input placeholder='请输入公司名称'></input>
+</view>
+<view class='item'>
+  <text class='title' decode='{{true}}'>职&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位</text>
+   <input placeholder='请输入职位名称'></input> 
+</view>
+

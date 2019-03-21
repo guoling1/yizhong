@@ -1,0 +1,21 @@
+<!--pages/messageList/messageList.wxml-->
+<view class='message_box'>
+  <view class='top'>
+    <text class='tip'></text>
+    <text class='title'>系统消息</text>
+    <text class='date'>2018-02-26</text>
+  </view>
+  <view class='detail'>您的游记《人生有多少个20年》收到评论消息。</view>
+  <view class='bottom'>
+    <text>查看详情>></text>
+  </view>
+</view>
+<view class='message_box'>
+  <view class='top'>
+    <text class='tip'></text>
+    <text class='title'>系统消息</text>
+    <text class='date'>2018-02-26</text>
+  </view>
+  <view class='detail'>您的游记《人生有多少个20年》收到评论消息。</view>
+  <navigator class='bottom' url='/pages/message/message'>查看详情>></navigator>
+</view>

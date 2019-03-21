@@ -1,2 +1,26 @@
-<!--pages/mailList/mailList.wxml-->
-<text>pages/mailList/mailList.wxml</text>
+<view class='search'>
+  <input placeholder='搜索'></input>
+  <image src='../../images/search.png'></image>
+</view>
+<view class='list'>
+  <view class='item'>
+    <image src='../../images/avatar.png'></image>
+    <view class='right'>
+      <view class='name'>刘玉</view>
+      <view class='bottom'>
+        <text>河北省邯郸市</text>
+        <text>2019届·04班</text>
+      </view>
+    </view>
+  </view>
+  <view class='item'>
+    <image src='../../images/avatar.png'></image>
+    <view class='right'>
+      <view class='name'>刘玉</view>
+      <view class='bottom'>
+        <text>河北省邯郸市</text>
+        <text>2019届·04班</text>
+      </view>
+    </view>
+  </view>
+</view>

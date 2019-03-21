@@ -1,0 +1,23 @@
+/* pages/myClass/myClass.wxss */
+page{
+  padding: 12rpx 30rpx 0;
+}
+.item{
+  margin-top: 33rpx;
+  border-bottom: 1px solid #f2f2f2;
+  height: 68rpx;
+  line-height: 68rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+.item .title{
+  display: inline-block;
+  width: 220rpx;
+}
+.item input{
+  display: inline-block;
+  width: 490rpx;
+  height: 68rpx;
+  line-height: 68rpx;
+  vertical-align: middle;
+}

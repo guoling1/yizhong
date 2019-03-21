@@ -1,2 +1,30 @@
 <!--pages/my/my.wxml-->
-<text>pages/my/my.wxml</text>
+<view class='top'>
+  <image src='../../images/bannerMy.png' class='bg'></image>
+  <view class='content'>
+    <image src='../../images/avatar.png'></image>
+    <view class='name'>康师傅</view>
+    <view>2019届·04班</view>
+  </view>
+</view>
+<navigator url='/pages/myClass/myClass'>
+  <image src='../../images/my1.png'></image>
+  <text>我的班级</text>
+</navigator>
+<navigator url='/pages/myCompany/myCompany'>
+  <image src='../../images/my2.png'></image>
+  <text>我的公司</text>
+</navigator>
+<navigator url='/pages/myTopic/myTopic'>
+  <image src='../../images/my3.png'></image>
+  <text>我的话题</text>
+</navigator>
+<navigator url='/pages/messageList/messageList'>
+  <image src='../../images/my4.png'></image>
+  <text class='no_border'>消息中心</text>
+</navigator>
+<view class='empty'></view>
+<navigator url='/pages/set/set'>
+  <image src='../../images/my5.png'></image>
+  <text class='no_border'>设置</text>
+</navigator>

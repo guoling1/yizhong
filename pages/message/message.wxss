@@ -1,0 +1,30 @@
+/* pages/message/message.wxss */
+page{
+  padding-top: 45rpx;
+}
+.message_box{
+  margin: 0 auto 30rpx;
+  width: 660rpx;
+  box-shadow:0 6rpx 25rpx #d8eaff;
+  border-radius: 5rpx;
+}
+.message_box .detail{
+  padding: 90rpx 30rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.message_box .bottom{
+  display: flex;
+  justify-content: space-around;
+}
+.message_box .bottom text{
+  display: inline-block;
+  width: 50%;
+  height: 65rpx;
+  line-height: 65rpx;
+  text-align: center;
+  background: #f9f9f9;
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #666;
+}

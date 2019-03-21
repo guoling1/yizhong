@@ -1,26 +1,5 @@
-<!--pages/community/community.wxml-->
-<view class="container">
-  <view class="page-section page-section-spacing swiper">
-    <swiper autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style='height:100%'>
-      <block wx:for="{{swiperData}}" wx:key="*this">
-        <swiper-item>
-          <view class="swiper-item {{item}}">
-            <image src='{{item.picurl}}'></image>
-            <!-- <image src='../../images/banner.png'></image> -->
-          </view>
-        </swiper-item>
-      </block>
-    </swiper>
-    <view class='search'>
-      <input placeholder='搜索'></input>
-      <image src='../../images/search.png'></image>
-    </view>
-    <view class='notice'>
-      <image src='../../images/notice.png'></image>
-      <text>校友来了！同城的你在哪儿？</text>
-    </view>
-  </view>
-  <view class='content'>
+<!--pages/myTopic/myTopic.wxml-->
+<view class='content'>
     <view class='item'>
       <view class='user'>
         <image src='../../images/avatar.png'></image>
@@ -99,5 +78,3 @@
     </view>
 
   </view>
-
-</view>

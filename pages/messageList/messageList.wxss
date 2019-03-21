@@ -1,0 +1,42 @@
+/* pages/messageList/messageList.wxss */
+page{
+  padding-top: 45rpx;
+}
+.message_box{
+  margin: 0 auto 30rpx;
+  padding: 0 30rpx;
+  width: 630rpx;
+  box-shadow:0 6rpx 25rpx #d8eaff;
+  border-radius: 25rpx;
+}
+.message_box .top {
+  padding: 10rpx 0 30rpx;
+}
+.message_box .top .tip{
+  display: inline-block;
+  margin-right: 7rpx;
+  width: 13rpx;
+  height: 13rpx;
+  border-radius: 50%;
+  background: #ff3a32;
+  vertical-align: middle;
+}
+.message_box .top .title{
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.message_box .top .date{
+  float: right;
+  margin-top: 5rpx;
+  font-size: 24rpx;
+  color: #666;
+}
+.message_box .detail{
+  font-size: 28rpx;
+  font-weight: bold;
+}
+.message_box .bottom{
+  padding: 30rpx 0;
+  font-size: 28rpx;
+  color: #666;
+}

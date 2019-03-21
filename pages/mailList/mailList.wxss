@@ -1,1 +1,53 @@
 /* pages/mailList/mailList.wxss */
+.search{
+  position: relative;
+  margin: 0 auto;
+  padding: 20rpx 0;
+  width: 100%;
+  height: 54rpx;
+  line-height: 54rpx;
+  background: #f6f6f6;
+  
+}
+.search input{
+  display: block;
+  margin: 0 auto;
+  width: 670rpx;
+  text-align: center;
+  border-radius: 8rpx;
+  background: #fff;
+}
+.search image{
+  position:absolute;
+  top:33rpx;
+  right:59rpx;
+  width:26rpx;
+  height:26rpx;
+  z-index:1;
+}
+.list{
+  margin-top: 18rpx;
+}
+.list .item{
+  padding: 24rpx 20rpx 14rpx;
+}
+.list image{
+  float: left;
+  width: 100rpx;
+  height: 100rpx;
+}
+.list .right{
+  margin-left: 100rpx;
+  padding: 0 0 20rpx 20rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+  line-height: 54rpx;
+}
+.list .right .name{
+  font-size: 30rpx;
+  font-weight: bold;
+}
+.list .right .bottom{
+  font-size: 26rpx;
+  color: #666;
+  line-height: 44rpx;
+}

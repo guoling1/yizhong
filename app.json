@@ -5,13 +5,19 @@
     "pages/community/community",
     "pages/track/track",
     "pages/mailList/mailList",
-    "pages/my/my"
+    "pages/my/my",
+    "pages/myClass/myClass",
+    "pages/myCompany/myCompany",
+    "pages/myTopic/myTopic",
+    "pages/messageList/messageList",
+    "pages/message/message",
+    "pages/set/set"
   ],
   "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle": "black"
+    "backgroundTextStyle": "black",
+    "navigationBarBackgroundColor": "#3e3f42",
+    "navigationBarTitleText": "邯郸一中",
+    "navigationBarTextStyle": "light"
   },
   "tabBar": {
     "color": "#d7dbe4",

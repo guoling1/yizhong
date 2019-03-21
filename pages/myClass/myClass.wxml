@@ -1,0 +1,17 @@
+<!--pages/myClass/myClass.wxml-->
+<view class='item'>
+  <text class='title' decode='{{true}}'>学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;校</text>
+  <input placeholder='请输入学校名称'></input>
+</view>
+<view class='item'>
+  <text class='title'>毕业时间</text>
+   <input placeholder='请输入毕业时间'></input> 
+</view>
+<view class='item'>
+  <text class='title' decode='{{true}}'>院&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;系</text>
+   <input placeholder='请输入院系'></input> 
+</view>
+<view class='item'>
+  <text class='title' decode='{{true}}'>专&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;业</text>
+   <input placeholder='请输入专业'></input> 
+</view>

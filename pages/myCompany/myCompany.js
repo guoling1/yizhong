@@ -1,22 +1,11 @@
-// pages/community/community.js
+// pages/myCompany/myCompany.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    swiperData: [{ picurl:'../../images/banner.png' }, { picurl:'../../images/banner.png'}],
-    news: [],
-    page: 0,
-    more: false,
-    vertical: false,
-    autoplay: false,
-    interval: 2000,
-    duration: 500,
-    motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+  
   },
 
   /**
