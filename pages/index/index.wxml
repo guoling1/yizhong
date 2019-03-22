@@ -11,3 +11,6 @@
     <text class="user-motto" bindtap="bindViewTap">{{motto}}</text>
   </view>
 </view>
+<view class="echart_panel" style='height:300rpx'>
+    <ec-canvas ec="{{ ecLine }}"></ec-canvas>
+  </view>
