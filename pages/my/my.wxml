@@ -2,8 +2,8 @@
 <view class='top'>
   <image src='../../images/bannerMy.png' class='bg'></image>
   <view class='content'>
-    <image src='../../images/avatar.png'></image>
-    <view class='name'>康师傅</view>
+    <image src='{{userInfo.avatarUrl}}'></image>
+    <view class='name'>{{userInfo.nickName}}</view>
     <view>2019届·04班</view>
   </view>
 </view>

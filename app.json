@@ -11,7 +11,10 @@
     "pages/myTopic/myTopic",
     "pages/messageList/messageList",
     "pages/message/message",
-    "pages/set/set"
+    "pages/set/set",
+    "pages/publish/publish",
+    "pages/personalData/personalData",
+    "pages/auth/auth"
   ],
   "window": {
     "backgroundTextStyle": "black",
@@ -38,7 +41,7 @@
       {
         "selectedIconPath": "images/tabm.png",
         "iconPath": "images/tabm.png",
-        "pagePath": "pages/logs/logs",
+        "pagePath": "pages/publish/publish",
         "text": ""
       },
       {

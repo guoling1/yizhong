@@ -1,0 +1,66 @@
+/* pages/personalData/personalData.wxss */
+.top{
+  position: relative;
+  height: 500rpx;
+}
+.top .bg{
+  position: absolute;
+  top: -20rpx;
+  height: 320rpx;
+}
+.top .base_box{
+  position: absolute;
+  top: 135rpx;
+  left: 30rpx;
+  width: 690rpx;
+  height: 350rpx;
+  border-radius: 20rpx;
+  background: #fff;
+  box-shadow:0 6rpx 20rpx #d8eaff;
+  text-align: center;
+  font-size: 24rpx;
+  font-weight: bold;
+}
+.top .base_box image{
+  margin: 20rpx auto 0;
+  width: 175rpx;
+  height: 175rpx;
+}
+.top .base_box .name{
+  margin: 28rpx 0 20rpx;
+  font-size: 32rpx;
+}
+.company{
+  display: flex;
+  justify-content: space-around;
+  margin: 40rpx auto 60rpx;
+  padding-top: 40rpx;
+  width: 690rpx;
+  height: 115rpx;
+  text-align: center;
+  font-size: 24rpx;
+  font-weight: bold;
+  box-shadow:0 6rpx 20rpx #d8eaff;
+  border-radius: 5rpx;
+}
+.company .des{
+  font-size: 32rpx;
+  color: #3a79ea;
+}
+.company .tip{
+  display: inline-block;
+  height: 80rpx;
+  width: 1rpx;
+  background: linear-gradient(rgba(245,245,245, 0.8),rgba(169,169,169, 0.8),rgba(105,105,105, 0.8),rgba(169,169,169, 0.8),rgba(245,245,245, 0.8));
+}
+.row{
+  padding-left: 30rpx;
+  line-height: 104rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+.row .title{
+  display: inline-block;
+  width: 360rpx;
+  color: #666;
+}

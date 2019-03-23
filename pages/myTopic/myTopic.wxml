@@ -15,10 +15,9 @@
       </view>
       <text class='des'>日暮前夕阳的最后一缕光从西边离开，夜幕温柔地覆盖了整个草原，和风吹过，带着干草舒服的气息日暮前夕阳的最后一缕光从西边离开，夜幕温柔地覆盖了整个草原，和风吹过，带着干草舒服的气息</text>
       <view class='btn'>
-        <view>
-          <image src='../../images/zan.png'></image>点赞</view>
-        <view>
-          <image src='../../images/message.png'></image>评论</view>
+        <view><image src='../../images/zan.png'></image>点赞</view>
+        <view class='line'></view>
+        <view><image src='../../images/message.png'></image>评论</view>
       </view>
     </view>
     <view class='item'>
@@ -70,10 +69,9 @@
         </view>
       </view>
       <view class='btn'>
-        <view>
-          <image src='../../images/zan.png'></image>点赞</view>
-        <view>
-          <image src='../../images/message.png'></image>评论</view>
+        <view><image src='../../images/zan.png'></image>点赞</view>
+        <view class='line'></view>
+        <view><image src='../../images/message.png'></image>评论</view>
       </view>
     </view>
 

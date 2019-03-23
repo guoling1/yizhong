@@ -18,9 +18,10 @@ page{
   font-weight: bold;
 }
 .top .content image{
-  margin: 35rpx auto 0;
+  margin: 35rpx auto 30rpx;
   width: 135rpx;
   height: 135rpx;
+  border-radius: 50%;
 }
 .top .content .name{
   font-size: 32rpx;
@@ -42,7 +43,7 @@ navigator text{
   display: inline-block;
   margin-left: 5rpx;
   padding: 18rpx;
-  width: 600rpx;
+  width: 580rpx;
   height: 75rpx;
   line-height: 75rpx;
   border-bottom: 1rpx solid #f2f2f2;

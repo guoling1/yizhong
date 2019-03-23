@@ -1,0 +1,12 @@
+/* pages/auth/auth.wxss */
+.title{
+  margin: 180rpx auto 0;
+  font-size: 34rpx;
+  font-weight: bold;
+}
+.line{
+  margin: 0 auto;
+  width: 55rpx;
+  height: 4rpx;
+  background: #e4373b;
+}

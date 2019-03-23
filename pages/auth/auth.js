@@ -1,38 +1,18 @@
-// pages/my/my.js
+// pages/auth/auth.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    userInfo: {}
+    array: ['美国', '中国', '巴西', '日本'],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-    /**
-     * 获取用户信息
-     */
-    wx.getUserInfo({
-      success: function (res) {
-        console.log(res);
-        that.setData({
-          userInfo: res.userInfo
-        })
-      }
-    })
-  },
-
-  getUserInfo: function (e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
+  
   },
 
   /**

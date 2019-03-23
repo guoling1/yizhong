@@ -1,38 +1,18 @@
-// pages/my/my.js
+// pages/publish/publish.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    userInfo: {}
+  
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-    /**
-     * 获取用户信息
-     */
-    wx.getUserInfo({
-      success: function (res) {
-        console.log(res);
-        that.setData({
-          userInfo: res.userInfo
-        })
-      }
-    })
-  },
-
-  getUserInfo: function (e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
+  
   },
 
   /**

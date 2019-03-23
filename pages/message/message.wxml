@@ -3,6 +3,7 @@
   <view class='detail'>您的游记《人生有多少个20年》收到评论消息。</view>
   <view class='bottom'>
     <text>同意</text>
+    <text class='line'></text>
     <text>拒绝</text>
   </view>
 </view>

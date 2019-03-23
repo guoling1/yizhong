@@ -1,0 +1,6 @@
+<!--pages/publish/publish.wxml-->
+<view class='content'>
+  <textarea placeholder='发表话题...'></textarea>
+  <image src='../../images/add.png'></image>
+</view>
+<button>确认提交</button>

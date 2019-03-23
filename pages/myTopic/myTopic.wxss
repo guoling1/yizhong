@@ -141,3 +141,10 @@ width: 110rpx;
   width: 30rpx;
   vertical-align:middle;
 }
+.content .item .btn .line{
+  display: inline-block;
+  margin-top: 12rpx;
+  height: 40rpx;
+  width: 1rpx;
+  background: linear-gradient(rgba(245,245,245, 0.8),rgba(169,169,169, 0.8),rgba(105,105,105, 0.8),rgba(169,169,169, 0.8),rgba(245,245,245, 0.8));
+}

@@ -1,0 +1,11 @@
+<!--pages/auth/auth.wxml-->
+<view class='title'>请认证身份信息</view>
+<view class='line'></view>
+<view class="section">
+  <view class="section__title">普通选择器</view>
+  <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+    <view class="picker">
+      当前选择：{{array[index]}}
+    </view>
+  </picker>
+</view>
