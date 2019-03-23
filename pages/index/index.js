@@ -1,98 +1,150 @@
 //index.js
 //获取应用实例
-const app = getApp()
+const app = getApp();
 import * as echarts from '../../ec-canvas/echarts';
+import geoJson from './mapData.js';
+function randomData() {
+  return Math.round(Math.random() * 500);
+} 
+var mydata = [
+  { name: '北京', value: '100' }, { name: '天津', value: randomData() },
+  { name: '上海', value: randomData() }, { name: '重庆', value: randomData() },
+  { name: '河北', value: randomData() }, { name: '河南', value: randomData() },
+  { name: '云南', value: randomData() }, { name: '辽宁', value: randomData() },
+  { name: '黑龙江', value: randomData() }, { name: '湖南', value: randomData() },
+  { name: '安徽', value: randomData() }, { name: '山东', value: randomData() },
+  { name: '新疆', value: randomData() }, { name: '江苏', value: randomData() },
+  { name: '浙江', value: randomData() }, { name: '江西', value: randomData() },
+  { name: '湖北', value: randomData() }, { name: '广西', value: randomData() },
+  { name: '甘肃', value: randomData() }, { name: '山西', value: randomData() },
+  { name: '内蒙古', value: randomData() }, { name: '陕西', value: randomData() },
+  { name: '吉林', value: randomData() }, { name: '福建', value: randomData() },
+  { name: '贵州', value: randomData() }, { name: '广东', value: randomData() },
+  { name: '青海', value: randomData() }, { name: '西藏', value: randomData() },
+  { name: '四川', value: randomData() }, { name: '宁夏', value: randomData() },
+  { name: '海南', value: randomData() }, { name: '台湾', value: randomData() },
+  { name: '香港', value: randomData() }, { name: '澳门', value: randomData() }
+];  
 
-function getOption(xData, data_cur, data_his) {
-  var option = {
-    backgroundColor: "#f5f4f3",
-    color: ["#37A2DA", "#f2960d", "#67E0E3", "#9FE6B8"],
-    title: {
-      text: '实时运行速度',
-      textStyle: {
-        fontWeight: '500',
-        fontSize: 15,
-        color: '#000'
-      },
-      x: 'center',
-      y: '0'
+function initChart(canvas, width, height) {
+  const chart = echarts.init(canvas, null, {
+    width: width,
+    height: height
+  });
+  canvas.setChart(chart);
+  // console.log(geoJson)
+  echarts.registerMap('china', geoJson);
+
+  const option = {
+    // backgroundColor: '#FFFFFF',
+    // tooltip: {
+    //   trigger: 'item'
+    // },
+
+    visualMap: { //左侧导航
+      show:false,
+      min: 0,
+      max: 100,
+      // left: 'left',
+      // top: 'bottom',
+      text: ['高', '低'], // 文本，默认为数值文本
+      calculable: false,
+      splitNumber:1,
+      splitList:[
+        {start:1,end:1000000000,label:'有'},
+        { start: 0, end: 1, label: '无' },
+      ],
+      color: ['#389BB7','#000']
     },
-    legend: {
-      data: ['今日', '昨日'],
-      right: 10
-    },
-    grid: {
-      top: '15%',
-      left: '1%',
-      right: '3%',
-      bottom: '60rpx',
-      containLabel: true
-    },
-    tooltip: {
+    geo: {
       show: true,
-      trigger: 'axis'
-    },
-    xAxis: {
-      type: 'category',
-      boundaryGap: false,
-      data: xData || [],
-      axisLabel: {
-        interval: 11,
-        formatter: function (value, index) {
-          return value.substring(0, 2) * 1;
+      map: 'china',
+      label: {
+        normal: {
+          show: false
         },
-        textStyle: {
-          fontsize: '10px'
+        emphasis: {
+          show: false,
+        }
+      },
+      roam: false,
+      itemStyle: {
+        normal: {
+          areaColor: '#01215c',
+          borderWidth: 2,//设置外层边框
+          borderColor: '#9ffcff',
+          shadowColor: 'rgba(0,54,255, 1)',
+          shadowBlur: 10
         }
       }
     },
-    yAxis: {
-      x: 'center',
-      name: 'km/h',
-      type: 'value',
-      min: 0,
-      max: 120
-    },
     series: [{
-      name: '今日',
-      zIndex: 2,
-      type: 'line',
-      smooth: true,
-      symbolSize: 0,
-      data: data_cur || []
-    }, {
-      name: '昨日',
-      zIndex: 1,
-      type: 'line',
-      smooth: true,
-      symbolSize: 0,
-      data: data_his || []
-    }]
+      name:'数据',
+      type: 'map',
+      mapType: 'china',
+      roam: false, 
+      aspectScale: 0.75,
+      label: {
+        normal: {
+          show: false
+        },
+        emphasis: {
+          show:false
+        }
+      },
+      itemStyle: {
+
+        normal: {
+          areaColor: '#01215c',
+          borderColor: '#9ffcff',
+          
+          // borderColor: '#389BB7',
+          // areaColor: '#000',
+          // borderWidth: 2,
+        },
+        emphasis: {
+          show:false
+        }
+      },
+      animation: false,
+
+      data: [
+        { name: '北京', value: '100' }, { name: '天津', value: '0' },
+        { name: '上海', value: '56' }, { name: '重庆', value: randomData() },
+        { name: '河北', value: 0 }, { name: '河南', value: randomData() },
+        { name: '云南', value: randomData() }, { name: '辽宁', value: randomData() },
+        { name: '黑龙江', value: randomData() }, { name: '湖南', value: randomData() },
+        { name: '安徽', value: randomData() }, { name: '山东', value: randomData() },
+        { name: '新疆', value: randomData() }, { name: '江苏', value: randomData() },
+        { name: '浙江', value: randomData() }, { name: '江西', value: randomData() },
+        { name: '湖北', value: randomData() }, { name: '广西', value: randomData() },
+        { name: '甘肃', value: randomData() }, { name: '山西', value: randomData() },
+        { name: '内蒙古', value: randomData() }, { name: '陕西', value: randomData() },
+        { name: '吉林', value: randomData() }, { name: '福建', value: randomData() },
+        { name: '贵州', value: randomData() }, { name: '广东', value: randomData() },
+        { name: '青海', value: randomData() }, { name: '西藏', value: randomData() },
+        { name: '四川', value: randomData() }, { name: '宁夏', value: randomData() },
+        { name: '海南', value: randomData() }, { name: '台湾', value: randomData() },
+        { name: '香港', value: randomData() }, { name: '澳门', value: randomData() }
+      ]
+
+    }],
+
   };
-  return option;
+
+  chart.setOption(option);
+
+  return chart;
 }
-let chartLine;
+let chart;
 Page({
   data: {
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    ecLine: {
-      onInit: function (canvas, width, height) {
-        //初始化echarts元素，绑定到全局变量，方便更改数据
-        chartLine = echarts.init(canvas, null, {
-          width: width,
-          height: height
-        });
-        canvas.setChart(chartLine);
-
-        //可以先不setOption，等数据加载好后赋值，
-        //不过那样没setOption前，echats元素是一片空白，体验不好，所有我先set。
-        var xData = arrayTime(5).slice(100);
-        var option = getOption(xData);
-        chartLine.setOption(option);
-      }
+    ec: {
+      onInit: initChart
     }
   },
   //事件处理函数
@@ -102,26 +154,37 @@ Page({
     })
   },
   onLoad: function () {
-      //ajax请求好数据后，调用获取option函数，传一些数据，
-      //然后用全局变量echarts元素chartLine 来 setOption即可。
+      // ajax请求好数据后，调用获取option函数，传一些数据，
+      // 然后用全局变量echarts元素chartLine 来 setOption即可。
+      // var xData=[1,2,3]
+      // var data_cur = [1, 2, 3]
+      // var data_his = [1, 2, 3]
       // var option = getOption(xData, data_cur, data_his);
       // chartLine.setOption(option);
       // //如果上面初始化时候，已经chartLine已经setOption了，
       // //那么建议不要重新setOption，官方推荐写法，重新赋数据即可。
       // chartLine.setOption({
       //   xAxis: {
-      //     data: xData
+      //     data: [1, 2, 3]
       //   },
       //   series: [{
       //     data: data_cur
       //   }, {
-      //     data: data_his
+      //       data: [1, 2, 3]
       //   }]
       // });
+    
+  },
+  /**
+  * 生命周期函数--监听页面显示
+  */
+  onShow: function () {
     wx.login({
       success: function (res) {
         var code = res.code;//登录凭证
         if (code) {
+          console.log(getApp().globalData)
+          
           //2、调用获取用户信息接口
           wx.getUserInfo({
             success: function (res) {
@@ -138,10 +201,10 @@ Page({
                   //4.解密成功后 获取自己服务器返回的结果
                   if (res.data.code == 200) {
                     var data = res.data.data;
-                    if(data.status==1){
-                      wx.navigateTo({
-                        url: '/pages/auth/auth',
-                      })
+                    if (data.status == 1) {
+                      // wx.navigateTo({
+                      //   url: '/pages/auth/auth',
+                      // })
                     }
                   } else {
                     console.log('2解密失败')
@@ -149,6 +212,9 @@ Page({
                 },
                 fail: function () {
                   console.log('1系统错误')
+                  // wx.navigateTo({
+                  //   url: '/pages/auth/auth',
+                  // })
                 }
               })
             },
@@ -164,5 +230,11 @@ Page({
         console.log('登陆失败')
       }
     })
+  },
+  onReady() {
+    setTimeout(function () {
+      // 获取 chart 实例的方式
+      console.log(chart)
+    }, 2000);
   }
 })

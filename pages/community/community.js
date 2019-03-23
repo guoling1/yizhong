@@ -5,18 +5,42 @@ Page({
    * 页面的初始数据
    */
   data: {
+    noticeTitle:'aaa',
     swiperData: [{ picurl:'../../images/banner.png' }, { picurl:'../../images/banner.png'}],
     news: [],
     page: 0,
     more: false,
     vertical: false,
-    autoplay: false,
+    autoplay: true,
     interval: 2000,
     duration: 500,
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
+  },
+  // 获取公告
+  getClass() {
+    wx.request({
+      url: getApp().globalData.url + '/sys/notice/activate',
+      method: 'post',
+      header: {
+        "Content-Type": "applciation/json"
+      },
+      success: function (res) {
+        //4.解密成功后 获取自己服务器返回的结果
+        if (res.data.code == 200) {
+          this.setData({
+            noticeTitle: res.data.data.noticeTitle
+          })
+        } else {
+          console.log('')
+        }
+      },
+      fail: function () {
+        console.log('系统错误');
+      }
+    })
   },
 
   /**

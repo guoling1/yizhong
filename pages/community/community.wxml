@@ -17,7 +17,7 @@
     </view>
     <view class='notice'>
       <image src='../../images/notice.png'></image>
-      <text>校友来了！同城的你在哪儿？</text>
+      <text>{{noticeTitle}}</text>
     </view>
   </view>
   <view class='content'>

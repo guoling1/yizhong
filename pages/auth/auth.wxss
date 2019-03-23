@@ -3,10 +3,31 @@
   margin: 180rpx auto 0;
   font-size: 34rpx;
   font-weight: bold;
+  text-align: center;
 }
 .line{
-  margin: 0 auto;
+  margin: 0 auto 60rpx;
   width: 55rpx;
   height: 4rpx;
+  background: #e4373b;
+}
+.section{
+  margin: 0 auto 35rpx;
+  padding: 0 30rpx;
+  width: 520rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  border: 1rpx solid #e7e7e7;
+  border-radius: 15rpx;
+}
+button{
+  margin-top: 80rpx;
+  width: 325rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 20rpx;
+  color: #fff;
+  font-size: 28rpx;
+  font-weight: bold;
   background: #e4373b;
 }

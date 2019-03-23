@@ -1,16 +1,6 @@
 <!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto" bindtap="bindViewTap">{{motto}}</text>
-  </view>
-</view>
-<view class="echart_panel" style='height:300rpx'>
-    <ec-canvas ec="{{ ecLine }}"></ec-canvas>
+
+<!-- <view id='main'></view> -->
+<view class="echart_panel" style='height:700rpx'>
+    <ec-canvas id="mychart-dom-area" canvas-id="mychart-area"  ec="{{ec}}"></ec-canvas>
   </view>
