@@ -2,13 +2,13 @@
 <view class='title'>请认证身份信息</view>
 <view class='line'></view>
 <view class="section">
-  <picker bindchange="bindPickerChange" value="{{index}}" range="{{gradeList}}">
+  <picker bindchange="bindPickerGrade" value="{{index}}" range-key="text" range="{{gradeList}}">
     <view class="picker">{{grade}}</view>
   </picker>
 </view>
 <view class="section">
-  <picker bindchange="bindPickerChange" value="{{index}}" range="{{gradeList}}">
-    <view class="picker">{{grade}}</view>
+  <picker bindchange="bindPickerClass" value="{{index}}" range-key="text" range="{{classList}}">
+    <view class="picker">{{class}}</view>
   </picker>
 </view>
 <view class="section">

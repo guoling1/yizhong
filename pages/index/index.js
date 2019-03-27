@@ -202,9 +202,9 @@ Page({
                   if (res.data.code == 200) {
                     var data = res.data.data;
                     if (data.status == 1) {
-                      // wx.navigateTo({
-                      //   url: '/pages/auth/auth',
-                      // })
+                      wx.navigateTo({
+                        url: '/pages/auth/auth',
+                      })
                     }
                   } else {
                     console.log('2解密失败')
@@ -212,9 +212,9 @@ Page({
                 },
                 fail: function () {
                   console.log('1系统错误')
-                  // wx.navigateTo({
-                  //   url: '/pages/auth/auth',
-                  // })
+                  wx.navigateTo({
+                    url: '/pages/auth/auth',
+                  })
                 }
               })
             },

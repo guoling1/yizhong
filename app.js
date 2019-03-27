@@ -31,5 +31,6 @@ App({
   globalData: {
     userInfo: null,
     url:'http://hdjincheng.6655.la'
+    // url: 'http://tbk.o87.net'
   }
 })
