@@ -1,0 +1,37 @@
+<!--pages/registMsg/registMsg.wxml-->
+<view class='item'>
+  <text class='title' decode='{{true}}'>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</text>
+  <input placeholder='请输入姓名'></input>
+</view>
+<view class='item'>
+  <text class='title'>在校时间</text>
+   <input placeholder='请选择在校时间'></input> 
+</view>
+<view class='item'>
+  <text class='title'>毕业时间</text>
+   <input placeholder='请选择毕业时间'></input> 
+</view>
+<view class='item'>
+  <text class='title' decode='{{true}}'>考入大学</text>
+   <input placeholder='请输入考入大学'></input> 
+</view>
+<view class='item'>
+  <text class='title' decode='{{true}}'>工作单位</text>
+   <input placeholder='请输入工作单位'></input> 
+</view>
+<view class='item'>
+  <text class='title' decode='{{true}}'>工作职务</text>
+   <input placeholder='请输入工作职务'></input> 
+</view>
+<view class='item'>
+  <text class='title' decode='{{true}}'>联系电话</text>
+   <input placeholder='请输入联系电话'></input> 
+</view>
+<view class='item'>
+  <text class='title' decode='{{true}}'>班&nbsp;主&nbsp;任</text>
+   <input placeholder='请输入班主任姓名'></input> 
+</view>
+<view class='item'>
+  <text class='title' decode='{{true}}'>竞赛教练</text>
+   <input placeholder='请输入竞赛教练姓名'></input> 
+</view>

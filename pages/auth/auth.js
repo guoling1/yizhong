@@ -171,58 +171,12 @@ Page({
       },
       fail: function () {
         console.log('系统错误');
-        that.setData({
-          gradeList: [{
-            "id": 27,
-            "text": "2012届",
-            "seq": 0,
-            "state": "open",
-            "checked": false,
-            "children": null,
-            "iconCls": "",
-            "pid": null,
-            "isLeaf": 1,
-            "attributes": null
-          }, {
-            "id": 41,
-            "text": "2011届",
-            "seq": 0,
-            "state": "open",
-            "checked": false,
-            "children": null,
-            "iconCls": "",
-            "pid": null,
-            "isLeaf": 1,
-            "attributes": null
-          }, {
-            "id": 26,
-            "text": "2013届",
-            "seq": 0,
-            "state": "open",
-            "checked": false,
-            "children": null,
-            "iconCls": "",
-            "pid": null,
-            "isLeaf": 1,
-            "attributes": null
-          }, {
-            "id": 30,
-            "text": "2016届",
-            "seq": 0,
-            "state": "open",
-            "checked": false,
-            "children": null,
-            "iconCls": "",
-            "pid": null,
-            "isLeaf": 1,
-            "attributes": null
-          }]
-          })
       }
     })
   },
   // 获取班级
   getClass() {
+    var that=this;
     wx.request({
       url: getApp().globalData.url + '/sys/orgs/treeClass',//自己的服务接口地址
       method: 'post',
@@ -235,7 +189,7 @@ Page({
       success: function (res) {
         //4.解密成功后 获取自己服务器返回的结果
         if (res.data.code == 200) {
-          this.setData({
+          that.setData({
             classList: res.data
           })
         } else {
