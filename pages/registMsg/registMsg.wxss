@@ -21,3 +21,14 @@ page{
   line-height: 68rpx;
   vertical-align: middle;
 }
+.button button{
+  margin: 80rpx auto;
+  width: 325rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 20rpx;
+  color: #fff;
+  font-size: 28rpx;
+  font-weight: bold;
+  background: #e4373b;
+}

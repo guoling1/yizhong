@@ -129,9 +129,6 @@ Page({
       })
       wx.navigateTo({
         url: '/pages/registMsg/registMsg',
-        success: function(res) {},
-        fail: function(res) {},
-        complete: function(res) {},
       })
     }
   },
