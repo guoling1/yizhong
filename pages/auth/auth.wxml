@@ -12,13 +12,8 @@
   </picker>
 </view>
 <view class="section">
-  <picker bindchange="bindPickerChange" value="{{index}}" range="{{gradeList}}" placeholder="xuanz">
-    <view class="picker">{{grade}}</view>
-  </picker>
+  <text>{{questName}}</text>
+  <text class='change' bindtap='getQuest'>换一个</text>
 </view>
-<view class="section">
-  <picker bindchange="bindPickerChange" value="{{index}}" range="{{gradeList}}" placeholder="xuanz">
-    <view class="picker">{{grade}}</view>
-  </picker>
-</view>
-<button>确认提交</button>
+  <input class="section" placeholder='填写答案' value='{{answer}}' bindinput="inputTyping"></input>
+<button bindtap='submit'>下一步</button>

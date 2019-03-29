@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    sex:'请选择',
+    sexList:['男','女']
   },
 
   /**
@@ -13,6 +14,12 @@ Page({
    */
   onLoad: function (options) {
   
+  },
+  bindSexChange(e){
+    console.log(e.detail.value)
+    this.setData({
+      sex: e.detail.value
+    })
   },
 
   /**

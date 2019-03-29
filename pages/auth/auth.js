@@ -7,99 +7,26 @@ Page({
   data: {
     grade: '年级选项',
     gradeId: '',
-    gradeList: [{
-      "id": 27,
-      "text": "2012届",
-      "seq": 0,
-      "state": "open",
-      "checked": false,
-      "children": null,
-      "iconCls": "",
-      "pid": null,
-      "isLeaf": 1,
-      "attributes": null
-    }, {
-      "id": 41,
-      "text": "2011届",
-      "seq": 0,
-      "state": "open",
-      "checked": false,
-      "children": null,
-      "iconCls": "",
-      "pid": null,
-      "isLeaf": 1,
-      "attributes": null
-    }, {
-      "id": 26,
-      "text": "2013届",
-      "seq": 0,
-      "state": "open",
-      "checked": false,
-      "children": null,
-      "iconCls": "",
-      "pid": null,
-      "isLeaf": 1,
-      "attributes": null
-    }, {
-      "id": 30,
-      "text": "2014届",
-      "seq": 0,
-      "state": "open",
-      "checked": false,
-      "children": null,
-      "iconCls": "",
-      "pid": null,
-      "isLeaf": 1,
-      "attributes": null
-    }],
+    gradeList: [],
     class:'班级选择',
     classId:'',
-    classList: [{
-      "id": 42,
-      "text": "一班",
-      "seq": 0,
-      "state": "open",
-      "checked": false,
-      "children": null,
-      "iconCls": "",
-      "pid": 41,
-      "isLeaf": 0,
-      "attributes": null
-    }, {
-      "id": 43,
-      "text": "二班",
-      "seq": 0,
-      "state": "open",
-      "checked": false,
-      "children": null,
-      "iconCls": "",
-      "pid": 41,
-      "isLeaf": 0,
-      "attributes": null
-    }, {
-      "id": 44,
-      "text": "三班",
-      "seq": 0,
-      "state": "open",
-      "checked": false,
-      "children": null,
-      "iconCls": "",
-      "pid": 41,
-      "isLeaf": 0,
-      "attributes": null
-    }]
+    classList: [],
+    quest: {}, 
+    questName:'认证问题',
+    answer:''
 
   },
+  // 选择年级并获取班级和问题
   bindPickerGrade(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       gradeId: this.data.gradeList[e.detail.value].id,
       grade: this.data.gradeList[e.detail.value].text
     })
+    this.getClass();
+    this.getQuest();
   },
+  // 选择班级
   bindPickerClass(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    
     this.setData({
       classId: this.data.classList[e.detail.value].id,
       class: this.data.classList[e.detail.value].text
@@ -115,59 +42,9 @@ Page({
         "Content-Type": "applciation/json"
       },
       success: function (res) {
-        //4.解密成功后 获取自己服务器返回的结果
-        if (res.data.code == 200) {
           that.setData({
-            gradeList: [{
-              "id": 27,
-              "text": "2012届",
-              "seq": 0,
-              "state": "open",
-              "checked": false,
-              "children": null,
-              "iconCls": "",
-              "pid": null,
-              "isLeaf": 1,
-              "attributes": null
-            }, {
-              "id": 41,
-              "text": "2011届",
-              "seq": 0,
-              "state": "open",
-              "checked": false,
-              "children": null,
-              "iconCls": "",
-              "pid": null,
-              "isLeaf": 1,
-              "attributes": null
-            }, {
-              "id": 26,
-              "text": "2013届",
-              "seq": 0,
-              "state": "open",
-              "checked": false,
-              "children": null,
-              "iconCls": "",
-              "pid": null,
-              "isLeaf": 1,
-              "attributes": null
-            }, {
-              "id": 30,
-              "text": "2014届",
-              "seq": 0,
-              "state": "open",
-              "checked": false,
-              "children": null,
-              "iconCls": "",
-              "pid": null,
-              "isLeaf": 1,
-              "attributes": null
-            }]
-
+            gradeList: res.data
           })
-        } else {
-          console.log('')
-        }
       },
       fail: function () {
         console.log('系统错误');
@@ -178,8 +55,8 @@ Page({
   getClass() {
     var that=this;
     wx.request({
-      url: getApp().globalData.url + '/sys/orgs/treeClass',//自己的服务接口地址
-      method: 'post',
+      url: getApp().globalData.url + '/sys/orgs/treeClass',
+      method: 'get',
       header: {
         "Content-Type": "applciation/json"
       },
@@ -187,10 +64,29 @@ Page({
         pid:this.data.gradeId
       },
       success: function (res) {
-        //4.解密成功后 获取自己服务器返回的结果
-        if (res.data.code == 200) {
           that.setData({
             classList: res.data
+          })
+      },
+      fail: function () {
+        console.log('系统错误');
+      }
+    })
+  },
+  // 获取问题
+  getQuest() {
+    var that = this;
+    wx.request({
+      url: getApp().globalData.url + '/sys/questionrandom/' + that.data.gradeId,
+      method: 'get',
+      header: {
+        "Content-Type": "applciation/json"
+      },
+      success: function (res) {
+        if (res.data.code == 200) {
+          that.setData({
+            quest: res.data.data,
+            questName: res.data.data.questionTitle
           })
         } else {
           console.log('')
@@ -201,7 +97,44 @@ Page({
       }
     })
   },
-
+  inputTyping: function (e) {
+    this.setData({
+      answer: e.detail.value
+    });
+  },
+  submit(){
+    wx.navigateTo({
+      url: '/pages/registMsg/registMsg',
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
+    if (this.data.gradeId == '' || this.data.classId == '' ||this.data.answer==''){
+      wx.showToast({
+        title: '请填写完整信息',
+        icon: 'none'
+      })
+    } else if (this.data.answer != this.data.quest.questionAnswer){
+      wx.showToast({
+        title: '回答错误',
+        icon: 'none'
+      })
+    }else{
+      wx.setStorage({
+        key: 'auth',
+        data: {
+          gradeId: this.data.gradeId,
+          classId: this.data.classId
+        },
+      })
+      wx.navigateTo({
+        url: '/pages/registMsg/registMsg',
+        success: function(res) {},
+        fail: function(res) {},
+        complete: function(res) {},
+      })
+    }
+  },
 
   /**
    * 生命周期函数--监听页面加载

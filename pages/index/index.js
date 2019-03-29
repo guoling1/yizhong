@@ -205,6 +205,29 @@ Page({
                       wx.navigateTo({
                         url: '/pages/auth/auth',
                       })
+                      // wx.request({
+                      //   url: getApp().globalData.url + '/sys/message/allcascade',//自己的服务接口地址
+                      //   method: 'post',
+                      //   header: {
+                      //     "Content-Type": "applciation/json"
+                      //   },
+                      //   data: {
+                      //     orgId: 41
+                      //   },
+                      //   success: function (res) {
+                      //     //4.解密成功后 获取自己服务器返回的结果
+                      //     if (res.data.code == 200) {
+                      //       that.setData({
+                      //         classList: res.data
+                      //       })
+                      //     } else {
+                      //       console.log('')
+                      //     }
+                      //   },
+                      //   fail: function () {
+                      //     console.log('系统错误');
+                      //   }
+                      // })
                     }
                   } else {
                     console.log('2解密失败')

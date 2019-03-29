@@ -14,7 +14,7 @@ page{
   display: inline-block;
   width: 220rpx;
 }
-.item input{
+.item input,.item picker{
   display: inline-block;
   width: 490rpx;
   height: 68rpx;
