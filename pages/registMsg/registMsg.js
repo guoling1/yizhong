@@ -9,27 +9,28 @@ Page({
    * 页面的初始数据
    */
   data: {
-    auth:{},
-    sex:'请选择',
-    sexList:['男','女'],
-    industryList:[],
-    industry:'请选择',
-    learningTime:'请选择',
-    graduationTime:'请选择',
+    auth: {},
+    sex: '请选择',
+    sexList: ['男', '女'],
+    industryList: [],
+    industry: '请选择',
+    industryId:'',
+    learningTime: '2019',
+    graduationTime: '2019',
     province: '',
-    city:'',
-    latitude:'',
-    longitude:''
+    city: '',
+    latitude: '',
+    longitude: '',
+    others: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     qqmapsdk = new QQMapWX({
       key: 'XOIBZ-6ZQK4-3NDUE-XGC3E-AMDDZ-E5FPJ' //自己的key秘钥 http://lbs.qq.com/console/mykey.html 在这个网址申请
     });
-
     var that = this;
     wx.getStorage({
       key: 'auth',
@@ -40,12 +41,12 @@ Page({
       },
     })
   },
-  bindSexChange(e){
+  bindSexChange(e) {
     this.setData({
       sex: this.data.sexList[e.detail.value]
     })
   },
-  bindIndustryChange(e){
+  bindIndustryChange(e) {
     this.setData({
       industry: this.data.industryList[e.detail.value].dictName
     })
@@ -61,10 +62,55 @@ Page({
     })
   },
   formSubmit(e) {
-    e.detail.value.industry = this.data.industryList[e.detail.value.industry].dictName;
-    console.log('form发生了submit事件，携带数据为：', e.detail.value)
-    var data = e.detail.value;
     
+    var data = e.detail.value;
+    var that = this;
+    data.grade = this.data.auth.gradeId;
+    data.openid = getApp().globalData.userInfo.openid;
+    data.classes = this.data.auth.classId;
+    data.orgId = this.data.auth.classId;
+    data.province = this.data.province;
+    data.city = this.data.city;
+    data.latitude = this.data.latitude;
+    data.longitude = this.data.longitude;
+    console.log(data)
+    var flag = true;
+    for (var i in data) {
+      if (!data[i]) {
+        flag = false;
+      }
+    }
+    if (flag) {
+      data.others = this.data.others;
+      data.industry = this.data.industryList[data.industry].dictCode;
+      data.learningTime = data.learningTime + '-' + data.graduationTime;
+      wx.request({
+        url: getApp().globalData.url + '/sys/usersByOpenid',
+        method: 'post',
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        data: data,
+        success: function(res) {
+          if(res.data.code=='200'){
+            wx.reLaunch({
+              url: '/pages/wait/wait',
+            })
+          }else{
+            console.log('系统错误1')
+          }
+          
+        },
+        fail: function() {
+          console.log('系统错误');
+        }
+      })
+    } else {
+      wx.showToast({
+        title: '请填写完整信息',
+        icon: 'none'
+      })
+    }
   },
   // 获取行业
   getGrade() {
@@ -75,15 +121,15 @@ Page({
       header: {
         "Content-Type": "applciation/json"
       },
-      data:{
-        dictInfo:'dictInfo'
+      data: {
+        dictInfo: 'dictInfo'
       },
-      success: function (res) {
+      success: function(res) {
         that.setData({
           industryList: JSON.parse(res.data.data)
         })
       },
-      fail: function () {
+      fail: function() {
         console.log('系统错误');
       }
     })
@@ -91,17 +137,17 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
     this.getGrade()
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
     this.getUserLocation();
   },
-  getUserLocation: function () {
+  getUserLocation: function() {
     let vm = this;
     wx.getSetting({
       success: (res) => {
@@ -113,7 +159,7 @@ Page({
           wx.showModal({
             title: '请求授权当前位置',
             content: '需要获取您的地理位置，请确认授权',
-            success: function (res) {
+            success: function(res) {
               if (res.cancel) {
                 wx.showToast({
                   title: '拒绝授权',
@@ -122,7 +168,7 @@ Page({
                 })
               } else if (res.confirm) {
                 wx.openSetting({
-                  success: function (dataAu) {
+                  success: function(dataAu) {
                     if (dataAu.authSetting["scope.userLocation"] == true) {
                       wx.showToast({
                         title: '授权成功',
@@ -146,8 +192,7 @@ Page({
         } else if (res.authSetting['scope.userLocation'] == undefined) {
           //调用wx.getLocation的API
           vm.getLocation();
-        }
-        else {
+        } else {
           //调用wx.getLocation的API
           vm.getLocation();
         }
@@ -155,11 +200,11 @@ Page({
     })
   },
   // 微信获得经纬度
-  getLocation: function () {
+  getLocation: function() {
     let vm = this;
     wx.getLocation({
       type: 'wgs84',
-      success: function (res) {
+      success: function(res) {
         console.log(JSON.stringify(res))
         var latitude = res.latitude
         var longitude = res.longitude
@@ -167,20 +212,20 @@ Page({
         var accuracy = res.accuracy;
         vm.getLocal(latitude, longitude);
       },
-      fail: function (res) {
+      fail: function(res) {
         console.log('fail' + JSON.stringify(res))
       }
     })
   },
   // 获取当前地理位置
-  getLocal: function (latitude, longitude) {
+  getLocal: function(latitude, longitude) {
     let vm = this;
     qqmapsdk.reverseGeocoder({
       location: {
         latitude: latitude,
         longitude: longitude
       },
-      success: function (res) {
+      success: function(res) {
         console.log(JSON.stringify(res));
         let province = res.result.ad_info.province
         let city = res.result.ad_info.city
@@ -192,10 +237,10 @@ Page({
         })
 
       },
-      fail: function (res) {
+      fail: function(res) {
         console.log(res);
       },
-      complete: function (res) {
+      complete: function(res) {
         // console.log(res);
       }
     });
@@ -203,35 +248,35 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
-  
+  onHide: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
-  
+  onUnload: function() {
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
-  
+  onPullDownRefresh: function() {
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-  
+  onReachBottom: function() {
+
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-  
+  onShareAppMessage: function() {
+
   }
 })

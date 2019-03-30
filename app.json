@@ -15,20 +15,21 @@
     "pages/publish/publish",
     "pages/personalData/personalData",
     "pages/auth/auth",
-    "pages/registMsg/registMsg"
+    "pages/registMsg/registMsg",
+    "pages/wait/wait"
   ],
   "window": {
-    "backgroundTextStyle": "black",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#3e3f42",
     "navigationBarTitleText": "邯郸一中",
-    "navigationBarTextStyle": "light"
+    "navigationBarTextStyle": "white"
   },
   "tabBar": {
     "color": "#d7dbe4",
     "selectedColor": "#565656",
     "list": [
       {
-        "selectedIconPath": "images/tab1.png",  
+        "selectedIconPath": "images/tab1.png",
         "iconPath": "images/tab1.png",
         "pagePath": "pages/index/index",
         "text": "校友足迹"
@@ -58,5 +59,6 @@
         "text": "个人中心"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

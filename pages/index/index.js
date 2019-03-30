@@ -191,7 +191,7 @@ Page({
               console.log({ encryptedData: res.encryptedData, iv: res.iv, code: code })
               //3.请求自己的服务器，解密用户信息 获取unionId等加密信息
               wx.request({
-                url: 'http://hdjincheng.6655.la/decodeUserInfo',//自己的服务接口地址
+                url: getApp().globalData.url+'/decodeUserInfo',
                 method: 'get',
                 header: {
                   "Content-Type": "applciation/json"
@@ -201,33 +201,15 @@ Page({
                   //4.解密成功后 获取自己服务器返回的结果
                   if (res.data.code == 200) {
                     var data = res.data.data;
+                    getApp().globalData.userInfo = data
                     if (data.status == 1) {
-                      wx.navigateTo({
+                      wx.reLaunch({
                         url: '/pages/auth/auth',
                       })
-                      // wx.request({
-                      //   url: getApp().globalData.url + '/sys/message/allcascade',//自己的服务接口地址
-                      //   method: 'post',
-                      //   header: {
-                      //     "Content-Type": "applciation/json"
-                      //   },
-                      //   data: {
-                      //     orgId: 41
-                      //   },
-                      //   success: function (res) {
-                      //     //4.解密成功后 获取自己服务器返回的结果
-                      //     if (res.data.code == 200) {
-                      //       that.setData({
-                      //         classList: res.data
-                      //       })
-                      //     } else {
-                      //       console.log('')
-                      //     }
-                      //   },
-                      //   fail: function () {
-                      //     console.log('系统错误');
-                      //   }
-                      // })
+                    } else if (data.status == 2) {
+                      wx.reLaunch({
+                        url: '/pages/wait/wait',
+                      })
                     }
                   } else {
                     console.log('2解密失败')
@@ -235,9 +217,6 @@ Page({
                 },
                 fail: function () {
                   console.log('1系统错误')
-                  wx.navigateTo({
-                    url: '/pages/auth/auth',
-                  })
                 }
               })
             },

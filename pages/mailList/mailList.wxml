@@ -3,12 +3,12 @@
   <image src='../../images/search.png'></image>
 </view>
 <view class='list'>
-  <view class='item'>
+  <view class='item' wx:for="{{userList}}">
     <image src='../../images/avatar.png'></image>
     <view class='right'>
-      <view class='name'>刘玉</view>
+      <view class='name'>{{item.name}}</view>
       <view class='bottom'>
-        <text>河北省邯郸市</text>
+        <text>{{item.province}}{{item.city}}</text>
         <text>2019届·04班</text>
       </view>
     </view>

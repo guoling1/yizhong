@@ -1,18 +1,20 @@
 // pages/mailList/mailList.js
+var page = 0;
+var rows = 10;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    userList:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.getData()
   },
 
   /**
@@ -20,6 +22,39 @@ Page({
    */
   onReady: function () {
   
+  },
+  getData() {
+    var that = this;
+    wx.showLoading({
+      title: '玩命加载中',
+    })
+    page = page + 1;
+    wx.request({
+      url: getApp().globalData.url + '/sys/users',
+      method: 'get',
+      header: {
+        "Content-Type": "applciation/json"
+      },
+      data:{
+        // orgId: getApp().globalData.userInfo.grade,
+        orgId:41,
+        page:page,
+        rows:rows
+      },
+      success: function (res) {
+        var userList = that.data.userList;
+        for (var i = 0; i < res.data.rows.length; i++) {
+          userList.push(res.data.rows[i]);
+        }
+        that.setData({
+          userList: userList
+        })
+        wx.hideLoading();
+      },
+      fail: function () {
+        console.log('系统错误');
+      }
+    })
   },
 
   /**
@@ -54,7 +89,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+    this.getData()
   },
 
   /**

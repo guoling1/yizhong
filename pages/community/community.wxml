@@ -15,19 +15,19 @@
       <input placeholder='搜索'></input>
       <image src='../../images/search.png'></image>
     </view>
-    <view class='notice'>
+    <view class='notice' wx:if="{{noticeTitle!=null}}">
       <image src='../../images/notice.png'></image>
       <text>{{noticeTitle}}</text>
     </view>
   </view>
   <view class='content'>
-    <view class='item'>
+    <view class='item' wx:for="{{messageList}}">
       <view class='user'>
         <navigator url='/pages/personalData/personalData'>
           <image src='../../images/avatar.png'></image>
         </navigator>
         <view class='right'>
-          <text class='name'>康师傅</text>
+          <text class='name'>{{item.userName}}</text>
           <text>2000年毕业·机械工程系·工业设计</text>
         </view>
       </view>

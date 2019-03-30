@@ -103,12 +103,6 @@ Page({
     });
   },
   submit(){
-    wx.navigateTo({
-      url: '/pages/registMsg/registMsg',
-      success: function (res) { },
-      fail: function (res) { },
-      complete: function (res) { },
-    })
     if (this.data.gradeId == '' || this.data.classId == '' ||this.data.answer==''){
       wx.showToast({
         title: '请填写完整信息',

@@ -1,6 +1,7 @@
 /* pages/auth/auth.wxss */
 .title{
-  margin: 180rpx auto 0;
+  padding-top: 180rpx;
+  margin: 0 auto;
   font-size: 34rpx;
   font-weight: bold;
   text-align: center;

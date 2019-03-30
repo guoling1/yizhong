@@ -11,6 +11,8 @@
 	"libVersion": "1.9.91",
 	"appid": "wx0ff47ec71144233f",
 	"projectname": "yizhong",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,

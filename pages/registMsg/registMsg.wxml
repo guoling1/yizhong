@@ -1,5 +1,17 @@
 <!--pages/registMsg/registMsg.wxml-->
 <form bindsubmit="formSubmit">
+<view class="date-title flex-row flex-center flex-middle">
+    <view style='width:80rpx;height:100%;line-height:80rpx;text-align:center;'  bindtap="dateDown">
+      <image src='/images/icon-left.png'></image>
+    </view>   
+    <picker bindchange="dateChange" class="date" fields="year" mode="date" value="{{date_1}}">
+      <view class="date-name">{{date}}</view>
+    </picker>
+    <view bindtap='dateUp' style='width:80rpx;height:100%;line-height:80rpx;text-align:center;'>
+      <image src='/images/icon-right5.png' ></image>
+    </view>
+  </view>
+  
   <view class='item'>
     <text class='title' decode='{{true}}'>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</text>
     <input name='name' placeholder='请输入姓名'></input>
@@ -59,6 +71,10 @@
   <view class='item'>
     <text class='title'>竞赛教练</text>
     <input name="competitionCoach" placeholder='请输入竞赛教练姓名'></input>
+  </view>
+  <view class='item'>
+    <text class='title' decode='{{true}}'>其&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;他</text>
+    <input placeholder='请输入其他信息' value='{{others}}'></input>
   </view>
   <view class="button">
     <button form-type="submit">确认</button>

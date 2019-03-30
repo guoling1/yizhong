@@ -1,0 +1,7 @@
+/* pages/wait/wait.wxss */
+page{
+  text-align: center;
+}
+icon{
+  margin: 160rpx 0 100rpx;
+}
