@@ -5,6 +5,7 @@
     "pages/community/community",
     "pages/track/track",
     "pages/mailList/mailList",
+    "pages/personalData/personalData",
     "pages/my/my",
     "pages/myClass/myClass",
     "pages/myCompany/myCompany",
@@ -13,7 +14,6 @@
     "pages/message/message",
     "pages/set/set",
     "pages/publish/publish",
-    "pages/personalData/personalData",
     "pages/auth/auth",
     "pages/registMsg/registMsg",
     "pages/wait/wait"

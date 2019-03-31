@@ -3,34 +3,35 @@
   <image src='../../images/bg.png' class='bg'></image>
   <view class='base_box'>
     <image src='../../images/avatar.png'></image>
-    <view class='name'>康师傅</view>
+    <view class='name'>{{userData.name}}</view>
     <view class='date'>2019年毕业·初三四班</view>
   </view>
 </view>
 <view class='company'>
   <view class='item'>
-    <view class='des'>河北地区经理</view>
+    <view class='des'>{{userData.post}}</view>
     <view class='name'>职业</view>
   </view>
   <text class='tip'></text>
   <view class='item'>
-    <view class='des'>中华人寿保险</view>
+    <view class='des'>{{userData.company}}</view>
     <view class='name'>公司</view>
   </view>
 </view>
 <view class='row'>
   <text class='title'>01.在一中学习时间</text>
-  <text class='con'>2018年~2019年</text>
+  <text class='con'>{{userData.learningTime}}</text>
 </view>
 <view class='row'>
-  <text class='title'>01.在一中学习时间</text>
-  <text class='con'>2018年~2019年</text>
+  <text class='title'>02.从我校考入的大学</text>
+  <text class='con'>{{userData.university}}</text>
 </view>
 <view class='row'>
-  <text class='title'>01.在一中学习时间</text>
-  <text class='con'>2018年~2019年</text>
+  <text class='title'>03.在我校期间班主任</text>
+  <text class='con'>{{userData.headmaster}}</text>
 </view>
 <view class='row'>
-  <text class='title'>01.在一中学习时间</text>
-  <text class='con'>2018年~2019年</text>
+  <text class='title'>04.任课老师</text>
+  <text class='con'>{{userData.teacherInClass}}</text>
 </view>
+<view class='bottom' bindtap='apply'>申请查看联系方式</view>

@@ -222,3 +222,24 @@ width: 110rpx;
   width: 30rpx;
   vertical-align:middle;
 }
+.content .item .textBox{
+  width: 100%;
+  background: #e7e7e7;
+  overflow: hidden;
+  font-size: 24rpx;
+} 
+.content .item .textBox textarea{
+  display: block;
+  margin: 0 auto;
+  padding: 10rpx;
+  width: 80%;
+  height: 40rpx;
+}
+.content .item .textBox .textBtn{
+  float: right;
+  margin: 15rpx;
+  background: #4e93f2;
+  padding: 5rpx 10rpx;
+  color: #fff;
+  border-radius: 5rpx;
+}

@@ -87,6 +87,57 @@ Page({
       }
     })
   },
+  // 发表评论
+  msgSubmit(){
+    wx.request({
+      url: getApp().globalData.url + '/sys/reply',
+      method: 'post',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      data: {
+        replyMessage:'',//评论内容，
+        mId:'',//被评论的信息的id，
+        userId:''//当前登录账户的id
+      },
+      success: function (res) {
+        if (res.data.code == '200') {
+          wx.showToast({
+            title: '评论成功',
+          })
+        } else {
+          console.log('系统错误1')
+        }
+
+      },
+      fail: function () {
+        console.log('系统错误');
+      }
+    })
+  },
+  // 删除评论
+  msgSubmit() {
+    wx.request({
+      url: getApp().globalData.url + '/sys/reply/{ids}',
+      method: 'post',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      success: function (res) {
+        if (res.data.code == '200') {
+          wx.showToast({
+            title: '删除成功',
+          })
+        } else {
+          console.log('系统错误1')
+        }
+
+      },
+      fail: function () {
+        console.log('系统错误');
+      }
+    })
+  },
 
   /**
    * 页面上拉触底事件的处理函数

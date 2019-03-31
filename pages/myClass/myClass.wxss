@@ -14,10 +14,21 @@ page{
   display: inline-block;
   width: 220rpx;
 }
-.item input{
+.item input,.item picker{
   display: inline-block;
   width: 490rpx;
   height: 68rpx;
   line-height: 68rpx;
   vertical-align: middle;
+}
+button{
+  margin-top: 100rpx;
+  width: 60%;
+  background: #4e93f2;
+  border: none;
+  color: #fff;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 32rpx;
+  font-weight: bold;
 }

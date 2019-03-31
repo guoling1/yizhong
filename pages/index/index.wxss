@@ -1,4 +1,13 @@
 /**index.wxss**/
+page{
+  position: relative;
+}
+.bg{
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
 .userinfo {
   display: flex;
   flex-direction: column;
@@ -18,4 +27,21 @@
 
 .usermotto {
   margin-top: 200px;
+}
+.top{
+  position: absolute;
+  bottom: 150rpx;
+  z-index: 1;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  text-shadow: 2rpx 2rpx 10rpx rgb(28, 68, 247);
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.top .top1{
+  font-size: 38rpx;
+}
+.top .top2{
+  font-size: 35rpx;
 }

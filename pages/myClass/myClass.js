@@ -5,22 +5,53 @@ Page({
    * 页面的初始数据
    */
   data: {
-    yuan:'dsf'
+    graduationTime: '2019',
+    university:''
   },
   formSubmit(e) {
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
-  },
-  formReset() {
-    console.log('form发生了reset事件')
-  },
+    wx.showLoading({
+      title: '修改中',
+    })
+    wx.request({
+      url: getApp().globalData.url + '/sys/usersByOpenid',
+      method: 'post',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      data: {
+        openid: getApp().globalData.userInfo.openid,
+        graduationTime: this.data.graduationTime,
+        university: this.data.university
+      },
+      success: function (res) {
+        if (res.data.code == '200') {
+          wx.showToast({
+            title: '修改成功',
+          })
+          wx.hideLoading()
+        } else {
+          console.log('系统错误1')
+        }
 
+      },
+      fail: function () {
+        console.log('系统错误');
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
     this.setData({
-      yuan:'111'
+      graduationTime: getApp().globalData.userInfo.graduationTime,
+      university: getApp().globalData.userInfo.university
+    })
+  },
+  bindgraduationTimeChange(e) {
+    this.setData({
+      graduationTime: e.detail.value
     })
   },
 

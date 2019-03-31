@@ -3,7 +3,7 @@
   <image src='../../images/search.png'></image>
 </view>
 <view class='list'>
-  <view class='item' wx:for="{{userList}}">
+  <view class='item' bindtap='toDetail' data-id='{{item.id}}' wx:for="{{userList}}" wx:key="{{item.id}}">
     <image src='../../images/avatar.png'></image>
     <view class='right'>
       <view class='name'>{{item.name}}</view>

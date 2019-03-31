@@ -37,10 +37,48 @@
         <image src='../../images/picture.png'></image>
       </view>
       <text class='des'>日暮前夕阳的最后一缕光从西边离开，夜幕温柔地覆盖了整个草原，和风吹过，带着干草舒服的气息日暮前夕阳的最后一缕光从西边离开，夜幕温柔地覆盖了整个草原，和风吹过，带着干草舒服的气息</text>
+      <view class='message'>
+        <view class='mes_item'>
+          <view class='user'>
+            <image src='../../images/avatar.png'></image>
+            <view class='right'>
+              <text class='name'>康师傅</text>
+              <text>9月20日 16:20</text>
+              <view class='msg_des'>房天下家居集团深圳公司中国装饰装修材料指数研究联合主办的第五届东鹏陶瓷杯家装榜样房大赛决赛8月15日举行。
+                <view>
+                  <image src='../../images/message_blue.png'></image>
+                  <text>回复</text>
+                </view>
+
+              </view>
+              <view class='msg_box'>
+                <view class='box_item'>
+                  <image src='../../images/avatar.png'></image>
+                  <view class='item_right'>
+                    <view class='item_name'>康师傅</view>
+                    <view class='item_con'>回复 <text>康师傅</text>：希望下次同学会可以一起！！</view>
+                  </view>
+                </view>
+                <view class='box_item'>
+                  <image src='../../images/avatar.png'></image>
+                  <view class='item_right'>
+                    <view class='item_name'>康师傅</view>
+                    <view class='item_con'>回复 <text>康师傅</text>：希望下次同学会可以一起！！</view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
       <view class='btn'>
         <view><image src='../../images/zan.png'></image>点赞</view>
         <view class='line'></view>
         <view><image src='../../images/message.png'></image>评论</view>
+      </view>
+      <view class='textBox'>
+        <textarea placeholder='输入评论...'></textarea>
+        <view class="textBtn" bindtap='msgSubmit'>评论</view>
       </view>
     </view>
     <view class='item'>
