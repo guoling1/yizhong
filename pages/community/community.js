@@ -63,8 +63,8 @@ Page({
         "Content-Type": "application/x-www-form-urlencoded"
       },
       data: {
-        // orgId: getApp().globalData.userInfo.grade,
-        orgId:41,
+        orgId: getApp().globalData.userInfo.grade,
+        // orgId:41,
         page: page,
         rows: rows
       },
@@ -105,6 +105,31 @@ Page({
           wx.showToast({
             title: '评论成功',
           })
+        } else {
+          console.log('系统错误1')
+        }
+
+      },
+      fail: function () {
+        console.log('系统错误');
+      }
+    })
+  },
+  // 点赞
+  agree() {
+    wx.request({
+      url: getApp().globalData.url + '/sys/messagePointsAdd',
+      method: 'get',
+      // header: {
+      //   "Content-Type": "application/x-www-form-urlencoded"
+      // },
+      data: {
+        userId: getApp().globalData.userInfo.id,//点赞用户id, 
+        messageId: ''//消息id
+      },
+      success: function (res) {
+        if (res.data.code == '200') {
+          // 变蓝
         } else {
           console.log('系统错误1')
         }

@@ -36,10 +36,10 @@ Page({
       },
       success: function (res) {
         if (res.data.code == '200') {
+          wx.hideLoading();
           wx.showToast({
             title: '修改成功',
           })
-          wx.hideLoading()
         } else {
           console.log('系统错误1')
         }

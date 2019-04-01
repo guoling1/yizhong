@@ -1,6 +1,6 @@
 <!--pages/set/set.wxml-->
 <view class='item'>帮助</view>
-<view class='item'>反馈</view>
+<navigator url="/pages/feedback/feedback" class='item'>反馈</navigator>
 <view class='item'>分享给好友</view>
 <view class='item'>关于开发者</view>
 <view class='item'>关于来自一中校友录</view>

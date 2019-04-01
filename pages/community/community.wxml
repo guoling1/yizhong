@@ -72,7 +72,7 @@
         </view>
       </view>
       <view class='btn'>
-        <view><image src='../../images/zan.png'></image>点赞</view>
+        <view bindtap='agree'><image src='../../images/zan.png'></image>点赞</view>
         <view class='line'></view>
         <view><image src='../../images/message.png'></image>评论</view>
       </view>

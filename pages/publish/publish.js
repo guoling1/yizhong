@@ -55,34 +55,37 @@ Page({
       }
     })
   },
-  submit(){
+  submit(e){
+    console.log(e)
     var that = this;
-    if(that.data.message){
+    var message = e.detail.value.message
+    if(message){
       wx.showLoading({
         title: '提交中',
       })
       wx.request({
-        url: getApp().globalData.url + '/sys/message/allcascade',
+        url: getApp().globalData.url + '/sys/message',
         method: 'post',
         header: {
           "Content-Type": "application/x-www-form-urlencoded"
         },
         data: {
-          // openid: getApp().globalData.userInfo.openid,
-          orgId: 41,
-          message: that.data.message,
+          openid: getApp().globalData.userInfo.openid,
+          orgId: getApp().globalData.userInfo.grade,
+          message: message,
           photo: ''
         },
         success: function (res) {
           if (res.data.code == 200) {
-            var messageList = that.data.messageList;
-            for (var i = 0; i < res.data.rows.length; i++) {
-              messageList.push(res.data.rows[i]);
-            }
-            that.setData({
-              messageList: messageList
-            })
             wx.hideLoading();
+            wx.showToast({
+              title: '发布成功',
+              icon:'none'
+            })
+            that.setData({
+              message: '',
+              pics: []
+            })
           } else {
             console.log('')
           }
@@ -94,6 +97,7 @@ Page({
     }else{
       wx.showToast({
         title: '请填写内容',
+        icon:'none'
       })
     }
     

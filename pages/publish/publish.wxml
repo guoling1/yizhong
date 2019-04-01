@@ -1,6 +1,8 @@
 <!--pages/publish/publish.wxml-->
-<view class='content'>
-  <textarea placeholder='发表话题...' value='{{message}}'></textarea>
-  <image src='../../images/add.png' bindtap='chooseImg'></image>
-</view>
-<button bindtap='submit'>确认提交</button>
+<form bindsubmit="submit">
+  <view class='content'>
+    <textarea placeholder='发表话题...' name="message" value='{{message}}'></textarea>
+    <image src='../../images/add.png' bindtap='chooseImg'></image>
+  </view>
+  <button form-type="submit">确认提交</button>
+</form>

@@ -16,7 +16,8 @@
     "pages/publish/publish",
     "pages/auth/auth",
     "pages/registMsg/registMsg",
-    "pages/wait/wait"
+    "pages/wait/wait",
+    "pages/feedback/feedback"
   ],
   "window": {
     "backgroundTextStyle": "dark",
