@@ -75,8 +75,8 @@ Page({
         "Content-Type": "applciation/json"
       },
       data:{
-        // orgId: getApp().globalData.userInfo.grade,
-        orgId:41,
+        orgId: getApp().globalData.userInfo.grade,
+        // orgId:41,
         page:page,
         rows:rows
       },

@@ -3,6 +3,7 @@
 <view class="echart_panel" style='height:700rpx'>
   <ec-canvas id="mychart-dom-area" canvas-id="mychart-area" ec="{{ec}}"></ec-canvas>
 </view>
+<view class='mask'></view>
 <view class='top'>
   <view class="{{'top'+(index+1)}}" wx:for="{{top}}" wx:key="{{index}}">Top{{index+1}} {{item.province}} {{item.others}}人</view>
 </view>

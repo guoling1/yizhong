@@ -7,126 +7,7 @@ import geoJson from './mapData.js';
 function randomData() {
   return Math.round(Math.random() * 500);
 }
-var mydata = [{
-    name: '北京',
-    value: '100'
-  }, {
-    name: '天津',
-    value: randomData()
-  },
-  {
-    name: '上海',
-    value: randomData()
-  }, {
-    name: '重庆',
-    value: randomData()
-  },
-  {
-    name: '河北',
-    value: randomData()
-  }, {
-    name: '河南',
-    value: randomData()
-  },
-  {
-    name: '云南',
-    value: randomData()
-  }, {
-    name: '辽宁',
-    value: randomData()
-  },
-  {
-    name: '黑龙江',
-    value: randomData()
-  }, {
-    name: '湖南',
-    value: randomData()
-  },
-  {
-    name: '安徽',
-    value: randomData()
-  }, {
-    name: '山东',
-    value: randomData()
-  },
-  {
-    name: '新疆',
-    value: randomData()
-  }, {
-    name: '江苏',
-    value: randomData()
-  },
-  {
-    name: '浙江',
-    value: randomData()
-  }, {
-    name: '江西',
-    value: randomData()
-  },
-  {
-    name: '湖北',
-    value: randomData()
-  }, {
-    name: '广西',
-    value: randomData()
-  },
-  {
-    name: '甘肃',
-    value: randomData()
-  }, {
-    name: '山西',
-    value: randomData()
-  },
-  {
-    name: '内蒙古',
-    value: randomData()
-  }, {
-    name: '陕西',
-    value: randomData()
-  },
-  {
-    name: '吉林',
-    value: randomData()
-  }, {
-    name: '福建',
-    value: randomData()
-  },
-  {
-    name: '贵州',
-    value: randomData()
-  }, {
-    name: '广东',
-    value: randomData()
-  },
-  {
-    name: '青海',
-    value: randomData()
-  }, {
-    name: '西藏',
-    value: randomData()
-  },
-  {
-    name: '四川',
-    value: randomData()
-  }, {
-    name: '宁夏',
-    value: randomData()
-  },
-  {
-    name: '海南',
-    value: randomData()
-  }, {
-    name: '台湾',
-    value: randomData()
-  },
-  {
-    name: '香港',
-    value: randomData()
-  }, {
-    name: '澳门',
-    value: randomData()
-  }
-];
+var mydata = []
 
 function initChart(canvas, width, height) {
   const chart = echarts.init(canvas, null, {
@@ -138,33 +19,6 @@ function initChart(canvas, width, height) {
   echarts.registerMap('china', geoJson);
 
   const option = {
-    // backgroundColor: '#FFFFFF',
-    // tooltip: {
-    //   trigger: 'item'
-    // },
-
-    visualMap: { //左侧导航
-      show: false,
-      min: 0,
-      max: 100,
-      // left: 'left',
-      // top: 'bottom',
-      text: ['高', '低'], // 文本，默认为数值文本
-      calculable: false,
-      splitNumber: 1,
-      splitList: [{
-          start: 1,
-          end: 1000000000,
-          label: '有'
-        },
-        {
-          start: 0,
-          end: 1,
-          label: '无'
-        },
-      ],
-      color: ['#389BB7', '#000']
-    },
     geo: {
       show: true,
       map: 'china',
@@ -212,131 +66,14 @@ function initChart(canvas, width, height) {
           // borderWidth: 2,
         },
         emphasis: {
-          show: false
+          // show: false
+          areaColor: '#0ad3e9',
+          borderColor: '#9ffcff',
         }
       },
       animation: false,
 
-      data: [{
-          name: '北京',
-          value: '100'
-        }, {
-          name: '天津',
-          value: '0'
-        },
-        {
-          name: '上海',
-          value: '56'
-        }, {
-          name: '重庆',
-          value: randomData()
-        },
-        {
-          name: '河北',
-          value: 0
-        }, {
-          name: '河南',
-          value: randomData()
-        },
-        {
-          name: '云南',
-          value: randomData()
-        }, {
-          name: '辽宁',
-          value: randomData()
-        },
-        {
-          name: '黑龙江',
-          value: randomData()
-        }, {
-          name: '湖南',
-          value: randomData()
-        },
-        {
-          name: '安徽',
-          value: randomData()
-        }, {
-          name: '山东',
-          value: randomData()
-        },
-        {
-          name: '新疆',
-          value: randomData()
-        }, {
-          name: '江苏',
-          value: randomData()
-        },
-        {
-          name: '浙江',
-          value: randomData()
-        }, {
-          name: '江西',
-          value: randomData()
-        },
-        {
-          name: '湖北',
-          value: randomData()
-        }, {
-          name: '广西',
-          value: randomData()
-        },
-        {
-          name: '甘肃',
-          value: randomData()
-        }, {
-          name: '山西',
-          value: randomData()
-        },
-        {
-          name: '内蒙古',
-          value: randomData()
-        }, {
-          name: '陕西',
-          value: randomData()
-        },
-        {
-          name: '吉林',
-          value: randomData()
-        }, {
-          name: '福建',
-          value: randomData()
-        },
-        {
-          name: '贵州',
-          value: randomData()
-        }, {
-          name: '广东',
-          value: randomData()
-        },
-        {
-          name: '青海',
-          value: randomData()
-        }, {
-          name: '西藏',
-          value: randomData()
-        },
-        {
-          name: '四川',
-          value: randomData()
-        }, {
-          name: '宁夏',
-          value: randomData()
-        },
-        {
-          name: '海南',
-          value: randomData()
-        }, {
-          name: '台湾',
-          value: randomData()
-        },
-        {
-          name: '香港',
-          value: randomData()
-        }, {
-          name: '澳门',
-          value: randomData()
-        }
-      ]
+      data: getApp().globalData.chartsData
 
     }],
 
@@ -364,6 +101,7 @@ Page({
     })
   },
   onLoad: function() {
+    
     // ajax请求好数据后，调用获取option函数，传一些数据，
     // 然后用全局变量echarts元素chartLine 来 setOption即可。
     // var xData=[1,2,3]
@@ -451,30 +189,37 @@ Page({
       }
     })
     this.getTop();
+    // this.getData();
   },
-  // getData() {
-  //   var that = this;
-  //   wx.request({s
-  //     url: getApp().globalData.url + '/sys/usersAllProvince',
-  //     method: 'get',
-  //     // header: {
-  //     //   "Content-Type": "applciation/json"
-  //     // },
-  //     success: function (res) {
-  //       if (res.data.code == 200) {
-  //         var data = res.data.data;
-  //         that.setData({
-  //           top: data
-  //         })
-  //       } else {
-  //         console.log('2解密失败')
-  //       }
-  //     },
-  //     fail: function () {
-  //       console.log('1系统错误')
-  //     }
-  //   })
-  // },
+  getData() {
+    var that = this;
+    wx.request({
+      url: getApp().globalData.url + '/sys/usersAllProvince',
+      method: 'get',
+      // header: {
+      //   "Content-Type": "applciation/json"
+      // },
+      success: function (res) {
+        if (res.data.code == 200) {
+          var data = res.data.data;
+          for(var i in data){
+            for(var j in mydata){
+              if (mydata[j].name == data[i].province){
+                mydata[j].selected = true;
+              }
+            }
+          }
+          demo2.series[0].data = mydata;
+
+        } else {
+          console.log('2解密失败')
+        }
+      },
+      fail: function () {
+        console.log('1系统错误')
+      }
+    })
+  },
   getTop() {
     var that = this;
     wx.request({
@@ -501,7 +246,7 @@ Page({
   onReady() {
     setTimeout(function() {
       // 获取 chart 实例的方式
-      console.log(chart)
+      console.log(echarts.setOption)
     }, 2000);
   }
 })
