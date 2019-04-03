@@ -69,7 +69,7 @@ Page({
     })
     page = page + 1;
     wx.request({
-      url: getApp().globalData.url + '/sys/users',
+      url: getApp().globalData.url + '/sys/users/list',
       method: 'get',
       header: {
         "Content-Type": "applciation/json"

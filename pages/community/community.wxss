@@ -106,7 +106,8 @@
   color: #000;
 }
 .content .item .img_group{
-  padding: 26rpx 0 0 30rpx;
+  /* padding: 26rpx 0 0 30rpx; */
+  margin:26rpx 0 0 30rpx;
   width: 720rpx;
 }
 .content .item .img_group image{

@@ -1,13 +1,14 @@
 // pages/community/community.js
 var page = 0;
-var rows = 1;
+var rows = 10;
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    url: getApp().globalData.url,
     noticeTitle: '',
-    messageList: [{ "createDate": "2019-03-16 10:14:06", "message": "aaaa", "messageFlag": 0, "messageId": 2, "orgId": "41", "page": 1, "photo": "20181220142928.jpg;20181220143314.jpg", "rows": 10, "userId": "57", "userName": "??" }, { "createDate": "2019-03-16 10:13:44", "message": "aaa", "messageFlag": 0, "messageId": 1, "orgId": "41", "page": 1, "photo": "20181220142928.jpg;20181220143314.jpg", "rows": 10, "userId": "57", "userName": "??" }],
+    messageList: [],
     swiperData: [{
       picurl: '../../images/banner.png'
     }, {
@@ -35,7 +36,6 @@ Page({
         "Content-Type": "applciation/json"
       },
       success: function(res) {
-        //4.解密成功后 获取自己服务器返回的结果
         if (res.data.code == 200) {
           that.setData({
             noticeTitle: res.data.data.noticeTitle
@@ -69,18 +69,16 @@ Page({
         rows: rows
       },
       success: function(res) {
-        if (res.data.code == 200) {
           var messageList = that.data.messageList;
           for (var i = 0; i < res.data.rows.length; i++) {
+            res.data.rows[i].isZan = false;
+            res.data.rows[i].photos = res.data.rows[i].photo.split(';')
             messageList.push(res.data.rows[i]);
           }
           that.setData({
             messageList: messageList
           })
           wx.hideLoading();
-        } else {
-          console.log('')
-        }
       },
       fail: function() {
         console.log('系统错误');
@@ -116,7 +114,8 @@ Page({
     })
   },
   // 点赞
-  agree() {
+  agree(e) {
+    console.log(e)
     wx.request({
       url: getApp().globalData.url + '/sys/messagePointsAdd',
       method: 'get',
@@ -125,7 +124,7 @@ Page({
       // },
       data: {
         userId: getApp().globalData.userInfo.id,//点赞用户id, 
-        messageId: ''//消息id
+        messageId: e.target.dataset.id//消息id
       },
       success: function (res) {
         if (res.data.code == '200') {

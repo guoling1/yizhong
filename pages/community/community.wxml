@@ -15,28 +15,39 @@
       <input placeholder='搜索'></input>
       <image src='../../images/search.png'></image>
     </view>
-    <view class='notice' wx:if="{{noticeTitle!=null}}">
+    <!-- <view class='notice' wx:if="{{noticeTitle!=null}}"> -->
+    <view class='notice'>
       <image src='../../images/notice.png'></image>
-      <text>{{noticeTitle}}</text>
+      <text>{{noticeTitle?noticeTitle:''}}</text>
     </view>
   </view>
   <view class='content'>
-    <view class='item' wx:for="{{messageList}}">
+    <view class='item' wx:for="{{messageList}}" wx:key="{{index}}">
       <view class='user'>
         <navigator url='/pages/personalData/personalData'>
-          <image src='../../images/avatar.png'></image>
+          <image src='{{item.avatarUrl}}'></image>
         </navigator>
         <view class='right'>
           <text class='name'>{{item.userName}}</text>
-          <text>2000年毕业·机械工程系·工业设计</text>
+          <text>{{item.orgName}}</text>
         </view>
       </view>
-      <view class='img_group'>
-        <image src='../../images/picture.png'></image>
-        <image src='../../images/picture.png'></image>
-        <image src='../../images/picture.png'></image>
+      <view class='img_group' wx-if="{{item.photo}}">
+        <image src='{{url+"/resources/images/actimg/"+itm}}' wx:for="{{item.photos}}" wx:for-item="itm" wx:key="itm"></image>
       </view>
-      <text class='des'>日暮前夕阳的最后一缕光从西边离开，夜幕温柔地覆盖了整个草原，和风吹过，带着干草舒服的气息日暮前夕阳的最后一缕光从西边离开，夜幕温柔地覆盖了整个草原，和风吹过，带着干草舒服的气息</text>
+      <text class='des'>{{item.message}}</text>
+      <view class='btn'>
+        <view bindtap='agree' data-id="{{item.messageId}}">
+        <image src='../../images/zan1.png' wx:if="{{item.isZan}}"></image>
+        <image src='../../images/zan.png' wx:else></image>
+        点赞</view>
+        <view class='line'></view>
+        <view><image src='../../images/message.png'></image>评论</view>
+      </view>
+      <view class='textBox'>
+        <textarea placeholder='输入评论...'></textarea>
+        <view class="textBtn" bindtap='msgSubmit'>评论</view>
+      </view>
       <view class='message'>
         <view class='mes_item'>
           <view class='user'>
@@ -70,15 +81,6 @@
             </view>
           </view>
         </view>
-      </view>
-      <view class='btn'>
-        <view bindtap='agree'><image src='../../images/zan.png'></image>点赞</view>
-        <view class='line'></view>
-        <view><image src='../../images/message.png'></image>评论</view>
-      </view>
-      <view class='textBox'>
-        <textarea placeholder='输入评论...'></textarea>
-        <view class="textBtn" bindtap='msgSubmit'>评论</view>
       </view>
     </view>
     <view class='item'>

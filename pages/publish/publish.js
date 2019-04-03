@@ -33,25 +33,28 @@ Page({
         that.setData({
           pics: pics
         });
-        that.uploadimg({
-          url: getApp().globalData.url + '/sys/photo/upload',//这里是你图片上传的接口
-          path: imgsrc//这里是选取的图片的地址数组
-        });
-        // wx.uploadFile({
-        //   url: getApp().globalData.url+'/sys/photo/upload', //仅为示例，非真实的接口地址
-        //   filePath: tempFilePaths[0],
-        //   name: 'file',
-        //   // formData: {
-        //   //   'user': 'test'
-        //   // },
-        //   success: function (res) {
-        //     var data = res.data
-        //     pics = pics.concat(imgsrc);
-        //     that.setData({
-        //       pics: pics
-        //     });
-        //   }
-        // })
+        // that.uploadimg({
+        //   url: getApp().globalData.url + '/sys/photo/upload',//这里是你图片上传的接口
+        //   path: imgsrc//这里是选取的图片的地址数组
+        // });
+        wx.uploadFile({
+          url: getApp().globalData.url+'/sys/photo/upload', //仅为示例，非真实的接口地址
+          filePath: imgsrc[0],
+          name: 'uploadFile',
+          // formData: {
+          //   'user': 'test'
+          // },
+          header: {
+            "Content-Type": "multipart/form-data"
+          },
+          success: function (res) {
+            var data = res.data
+            pics = pics.concat(imgsrc);
+            that.setData({
+              pics: pics
+            });
+          }
+        })
       }
     })
   },
