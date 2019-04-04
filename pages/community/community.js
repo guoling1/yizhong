@@ -64,7 +64,7 @@ Page({
       },
       data: {
         orgId: getApp().globalData.userInfo.grade,
-        // orgId:41,
+        userId: getApp().globalData.userInfo.id,
         page: page,
         rows: rows
       },
@@ -72,6 +72,8 @@ Page({
           var messageList = that.data.messageList;
           for (var i = 0; i < res.data.rows.length; i++) {
             res.data.rows[i].isZan = false;
+            res.data.rows[i].isReply = false;
+            res.data.rows[i].replyList = [];
             res.data.rows[i].photos = res.data.rows[i].photo.split(';')
             messageList.push(res.data.rows[i]);
           }
@@ -85,8 +87,44 @@ Page({
       }
     })
   },
+  // 展开评论区
+  openReply(e){
+    var list = this.data.messageList;
+    var that = this;
+    wx.request({
+      url: getApp().globalData.url + '/sys/messageDetailList',
+      method: 'get',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      data: {
+        messageId: e.target.dataset.id,
+      },
+      success: function (res) {
+        list[e.target.dataset.index].replyList = res.data.rows;
+        list[e.target.dataset.index].content = '';
+        list[e.target.dataset.index].isReply = !list[e.target.dataset.index].isReply;
+        that.setData({
+          messageList: list
+        })
+      },
+      fail: function () {
+        console.log('系统错误');
+      }
+    })
+    
+  },
+  textValue(e){
+    var list = this.data.messageList;
+    list[e.target.dataset.index].content = e.detail.value
+    this.setData({
+      messageList: list
+    })
+  },
   // 发表评论
-  msgSubmit(){
+  msgSubmit(e){
+    console.log(e)
+    console.log(this.data.messageList[e.target.dataset.index].content)
     wx.request({
       url: getApp().globalData.url + '/sys/reply',
       method: 'post',
@@ -94,15 +132,16 @@ Page({
         "Content-Type": "application/x-www-form-urlencoded"
       },
       data: {
-        replyMessage:'',//评论内容，
-        mId:'',//被评论的信息的id，
-        userId:''//当前登录账户的id
+        replyMessage: this.data.messageList[e.target.dataset.index].content,//评论内容，
+        mId: e.target.dataset.id,//被评论的信息的id，
+        userId:getApp().globalData.userInfo.id//当前登录账户的id
       },
       success: function (res) {
         if (res.data.code == '200') {
           wx.showToast({
             title: '评论成功',
           })
+          // 缺少评论完重新展示
         } else {
           console.log('系统错误1')
         }
@@ -140,28 +179,28 @@ Page({
     })
   },
   // 删除评论
-  msgSubmit() {
-    wx.request({
-      url: getApp().globalData.url + '/sys/reply/{ids}',
-      method: 'post',
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      success: function (res) {
-        if (res.data.code == '200') {
-          wx.showToast({
-            title: '删除成功',
-          })
-        } else {
-          console.log('系统错误1')
-        }
+  // msgSubmit() {
+  //   wx.request({
+  //     url: getApp().globalData.url + '/sys/reply/{ids}',
+  //     method: 'post',
+  //     header: {
+  //       "Content-Type": "application/x-www-form-urlencoded"
+  //     },
+  //     success: function (res) {
+  //       if (res.data.code == '200') {
+  //         wx.showToast({
+  //           title: '删除成功',
+  //         })
+  //       } else {
+  //         console.log('系统错误1')
+  //       }
 
-      },
-      fail: function () {
-        console.log('系统错误');
-      }
-    })
-  },
+  //     },
+  //     fail: function () {
+  //       console.log('系统错误');
+  //     }
+  //   })
+  // },
 
   /**
    * 页面上拉触底事件的处理函数

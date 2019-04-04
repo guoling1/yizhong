@@ -2,6 +2,7 @@
 <form bindsubmit="submit">
   <view class='content'>
     <textarea placeholder='发表话题...' name="message" value='{{message}}'></textarea>
+    <image src='{{url+"/resources/images/actimg/"+item}}' wx:for="{{pics}}" wx:key="{{index}}"></image>
     <image src='../../images/add.png' bindtap='chooseImg'></image>
   </view>
   <button form-type="submit">确认提交</button>

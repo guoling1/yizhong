@@ -38,43 +38,47 @@
       <text class='des'>{{item.message}}</text>
       <view class='btn'>
         <view bindtap='agree' data-id="{{item.messageId}}">
-        <image src='../../images/zan1.png' wx:if="{{item.isZan}}"></image>
-        <image src='../../images/zan.png' wx:else></image>
-        点赞</view>
+          <image src='../../images/zan1.png' wx:if="{{item.isPoints}}"></image>
+          <image src='../../images/zan.png' wx:else></image>
+          点赞</view>
         <view class='line'></view>
-        <view><image src='../../images/message.png'></image>评论</view>
+        <view bindtap='openReply' data-index='{{index}}' data-id="{{item.messageId}}"><image src='../../images/message.png' data-index='{{index}}' data-id="{{item.messageId}}"></image>评论</view>
       </view>
-      <view class='textBox'>
-        <textarea placeholder='输入评论...'></textarea>
-        <view class="textBtn" bindtap='msgSubmit'>评论</view>
-      </view>
-      <view class='message'>
-        <view class='mes_item'>
-          <view class='user'>
-            <image src='../../images/avatar.png'></image>
-            <view class='right'>
-              <text class='name'>康师傅</text>
-              <text>9月20日 16:20</text>
-              <view class='msg_des'>房天下家居集团深圳公司中国装饰装修材料指数研究联合主办的第五届东鹏陶瓷杯家装榜样房大赛决赛8月15日举行。
-                <view>
-                  <image src='../../images/message_blue.png'></image>
-                  <text>回复</text>
-                </view>
-
-              </view>
-              <view class='msg_box'>
-                <view class='box_item'>
-                  <image src='../../images/avatar.png'></image>
-                  <view class='item_right'>
-                    <view class='item_name'>康师傅</view>
-                    <view class='item_con'>回复 <text>康师傅</text>：希望下次同学会可以一起！！</view>
+      <view wx-if="{{item.isReply}}">
+        <view class='textBox'>
+          <textarea bindinput='textValue' data-index='{{index}}' placeholder='输入评论...'></textarea>
+          <view class="textBtn" bindtap='msgSubmit' data-index='{{index}}' data-id="{{item.messageId}}" data-content='{{item.content}}'>评论</view>
+        </view>
+        <view class='message'>
+          <view class='mes_item' wx:for="{{item.replyList}}" wx:key="{{item}}">
+            <view class='user'>
+              <image src='../../images/avatar.png'></image>
+              <view class='right'>
+                <text class='name'>康师傅</text>
+                <text>9月20日 16:20</text>
+                <view class='msg_des'>房天下家居集团深圳公司中国装饰装修材料指数研究联合主办的第五届东鹏陶瓷杯家装榜样房大赛决赛8月15日举行。
+                  <view>
+                    <image src='../../images/message_blue.png'></image>
+                    <text>回复</text>
                   </view>
+
                 </view>
-                <view class='box_item'>
-                  <image src='../../images/avatar.png'></image>
-                  <view class='item_right'>
-                    <view class='item_name'>康师傅</view>
-                    <view class='item_con'>回复 <text>康师傅</text>：希望下次同学会可以一起！！</view>
+                <view class='msg_box'>
+                  <view class='box_item'>
+                    <image src='../../images/avatar.png'></image>
+                    <view class='item_right'>
+                      <view class='item_name'>康师傅</view>
+                      <view class='item_con'>回复
+                        <text>康师傅</text>：希望下次同学会可以一起！！</view>
+                    </view>
+                  </view>
+                  <view class='box_item'>
+                    <image src='../../images/avatar.png'></image>
+                    <view class='item_right'>
+                      <view class='item_name'>康师傅</view>
+                      <view class='item_con'>回复
+                        <text>康师傅</text>：希望下次同学会可以一起！！</view>
+                    </view>
                   </view>
                 </view>
               </view>
@@ -82,6 +86,7 @@
           </view>
         </view>
       </view>
+
     </view>
     <view class='item'>
       <view class='user'>
@@ -116,14 +121,16 @@
                   <image src='../../images/avatar.png'></image>
                   <view class='item_right'>
                     <view class='item_name'>康师傅</view>
-                    <view class='item_con'>回复 <text>康师傅</text>：希望下次同学会可以一起！！</view>
+                    <view class='item_con'>回复
+                      <text>康师傅</text>：希望下次同学会可以一起！！</view>
                   </view>
                 </view>
                 <view class='box_item'>
                   <image src='../../images/avatar.png'></image>
                   <view class='item_right'>
                     <view class='item_name'>康师傅</view>
-                    <view class='item_con'>回复 <text>康师傅</text>：希望下次同学会可以一起！！</view>
+                    <view class='item_con'>回复
+                      <text>康师傅</text>：希望下次同学会可以一起！！</view>
                   </view>
                 </view>
               </view>
@@ -132,9 +139,11 @@
         </view>
       </view>
       <view class='btn'>
-        <view><image src='../../images/zan.png'></image>点赞</view>
+        <view>
+          <image src='../../images/zan.png'></image>点赞</view>
         <view class='line'></view>
-        <view><image src='../../images/message.png'></image>评论</view>
+        <view>
+          <image src='../../images/message.png'></image>评论</view>
       </view>
     </view>
 
