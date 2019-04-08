@@ -126,8 +126,8 @@ App({
   },
   globalData: {
     userInfo: null,
-    url: 'http://hdjincheng.6655.la',
-    // url:'http://24323j007d.wicp.vip',
+    // url: 'http://hdjincheng.6655.la',
+    url:'http://24323j007d.wicp.vip',
     // url: 'http://tbk.o87.net',
     chartsData: []
   },

@@ -91,27 +91,38 @@ Page({
   openReply(e){
     var list = this.data.messageList;
     var that = this;
-    wx.request({
-      url: getApp().globalData.url + '/sys/messageDetailList',
-      method: 'get',
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      data: {
-        messageId: e.target.dataset.id,
-      },
-      success: function (res) {
-        list[e.target.dataset.index].replyList = res.data.rows;
-        list[e.target.dataset.index].content = '';
-        list[e.target.dataset.index].isReply = !list[e.target.dataset.index].isReply;
-        that.setData({
-          messageList: list
-        })
-      },
-      fail: function () {
-        console.log('系统错误');
-      }
-    })
+    if (list[e.target.dataset.index].isReply){
+      list[e.target.dataset.index].isReply = false;
+      that.setData({
+        messageList: list
+      })
+    }else{
+      list[e.target.dataset.index].isReply = !list[e.target.dataset.index].isReply;
+      list[e.target.dataset.index].content = '';
+      that.setData({
+        messageList: list
+      })
+      wx.request({
+        url: getApp().globalData.url + '/sys/messageDetailList',
+        method: 'get',
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        data: {
+          messageId: e.target.dataset.id,
+        },
+        success: function (res) {
+          list[e.target.dataset.index].replyList = res.data.rows;
+          
+          that.setData({
+            messageList: list
+          })
+        },
+        fail: function () {
+          console.log('系统错误');
+        }
+      })
+    }
     
   },
   textValue(e){
@@ -123,8 +134,7 @@ Page({
   },
   // 发表评论
   msgSubmit(e){
-    console.log(e)
-    console.log(this.data.messageList[e.target.dataset.index].content)
+    var that = this
     wx.request({
       url: getApp().globalData.url + '/sys/reply',
       method: 'post',
@@ -141,7 +151,31 @@ Page({
           wx.showToast({
             title: '评论成功',
           })
-          // 缺少评论完重新展示
+          list[e.target.dataset.index].content = '';
+          that.setData({
+            messageList: list
+          })
+          var list = that.data.messageList;
+          wx.request({
+            url: getApp().globalData.url + '/sys/messageDetailList',
+            method: 'get',
+            header: {
+              "Content-Type": "application/x-www-form-urlencoded"
+            },
+            data: {
+              messageId: e.target.dataset.id
+            },
+            success: function (res) {
+              list[e.target.dataset.index].replyList = res.data.rows;
+              list[e.target.dataset.index].content = '';
+              that.setData({
+                messageList: list
+              })
+            },
+            fail: function () {
+              console.log('系统错误');
+            }
+          })
         } else {
           console.log('系统错误1')
         }

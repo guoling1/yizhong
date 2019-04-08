@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <image class='bg' src='../../images/bg.jpg'></image>
 <view class="echart_panel" style='height:700rpx'>
-  <ec-canvas id="mychart-dom-area" canvas-id="mychart-area" ec="{{ec}}"></ec-canvas>
+  <ec-canvas id="mychart" canvas-id="mychart-area" ec="{{ec}}"></ec-canvas>
 </view>
 <view class='mask'></view>
 <view class='top'>

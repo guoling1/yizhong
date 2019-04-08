@@ -50,20 +50,20 @@
           <view class="textBtn" bindtap='msgSubmit' data-index='{{index}}' data-id="{{item.messageId}}" data-content='{{item.content}}'>评论</view>
         </view>
         <view class='message'>
-          <view class='mes_item' wx:for="{{item.replyList}}" wx:key="{{item}}">
+          <view class='mes_item' wx:for="{{item.replyList}}" wx:for-item="itm" wx:key="{{itm}}">
             <view class='user'>
               <image src='../../images/avatar.png'></image>
               <view class='right'>
-                <text class='name'>康师傅</text>
-                <text>9月20日 16:20</text>
-                <view class='msg_des'>房天下家居集团深圳公司中国装饰装修材料指数研究联合主办的第五届东鹏陶瓷杯家装榜样房大赛决赛8月15日举行。
-                  <view>
+                <text class='name'>{{itm.userId}}</text>
+                <text>{{itm.createDate}}</text>
+                <view class='msg_des'>{{itm.replyMessage}}
+                  <!-- <view>
                     <image src='../../images/message_blue.png'></image>
                     <text>回复</text>
-                  </view>
+                  </view> -->
 
                 </view>
-                <view class='msg_box'>
+                <!-- <view class='msg_box'>
                   <view class='box_item'>
                     <image src='../../images/avatar.png'></image>
                     <view class='item_right'>
@@ -80,7 +80,7 @@
                         <text>康师傅</text>：希望下次同学会可以一起！！</view>
                     </view>
                   </view>
-                </view>
+                </view> -->
               </view>
             </view>
           </view>
