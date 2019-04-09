@@ -10,6 +10,19 @@ page{
   font-size: 28rpx;
   font-weight: bold;
 }
-/* .item .title{
-  display: inline-block;
-} */
+.item button{
+  /* position: inherit; */
+  margin: 0;
+  padding: 0;
+  display: block;
+  height: 68rpx;
+  line-height: 68rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  background: inherit;
+  border: none;
+  text-align: left;
+}
+.item button::after{
+  border: 0;
+}

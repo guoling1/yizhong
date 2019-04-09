@@ -8,18 +8,7 @@
     <view class='right'>
       <view class='name'>{{item.name}}</view>
       <view class='bottom'>
-        <text>{{item.province}}{{item.city}}</text>
-        <text>2019届·04班</text>
-      </view>
-    </view>
-  </view>
-  <view class='item'>
-    <image src='../../images/avatar.png'></image>
-    <view class='right'>
-      <view class='name'>刘玉</view>
-      <view class='bottom'>
-        <text>河北省邯郸市</text>
-        <text>2019届·04班</text>
+        <text>{{item.province}}{{item.city?item.city:''}}</text>  <text>{{item.gradeName}}·{{item.classesName}}</text>
       </view>
     </view>
   </view>

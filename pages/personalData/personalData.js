@@ -40,7 +40,8 @@ Page({
 		"teacherInClass": "张峰，李琼，王赛",
 		"competitionCoach": "詹飞谷", 
 		"others": "很好很强大",
-		"orgId": 27}
+		"orgId": 27},
+    id:''
   },
 
   /**
@@ -49,6 +50,9 @@ Page({
   onLoad: function (options) {
     console.log(options)
     var that = this;
+    this.setData({
+      id: options.id
+    })
     wx.showLoading({
       title: '玩命加载中',
     })
@@ -65,16 +69,23 @@ Page({
           })
           wx.hideLoading();
         } else {
-          console.log('')
+          wx.hideLoading();
+          wx.showToast({
+            title: '系统错误',
+            icon:'none'
+          })
         }
       },
       fail: function () {
         console.log('系统错误');
+        wx.hideLoading();
       }
     })
   },
   // 申请查看电话
   apply(){
+    var that = this;
+    console.log(getApp().globalData.userInfo.id)
     wx.request({
       url: getApp().globalData.url + '/sys/apply',
       method: 'post',
@@ -82,19 +93,18 @@ Page({
         "Content-Type": "application/x-www-form-urlencoded"
       },
       data:{
-        fromUserId:'',//发起申请的用户id，
-        toUserId:'',//被申请的用户的id,
+        fromUserId: getApp().globalData.userInfo.id,//发起申请的用户id，
+        toUserId:that.data.id,//被申请的用户的id,
         applyMessage:''//申请信息
       },
       success: function (res) {
         if (res.data.code == '200') {
           wx.showToast({
-            title: '删除成功',
+            title: '申请成功',
           })
         } else {
           console.log('系统错误1')
         }
-
       },
       fail: function () {
         console.log('系统错误');

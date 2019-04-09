@@ -61,6 +61,21 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+    return {
+      title: '分享',
+      path: '/pages/index/index',
+      imageUrl: '../../images/share.jpg',  //用户分享出去的自定义图片大小为5:4,
+      success: function (res) {
+        // 转发成功
+        wx.showToast({
+          title: "分享成功",
+          icon: 'success',
+          duration: 2000
+        })
+      },
+      fail: function (res) {
+        // 分享失败
+      },
+    }
   }
 })

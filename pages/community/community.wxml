@@ -52,7 +52,7 @@
         <view class='message'>
           <view class='mes_item' wx:for="{{item.replyList}}" wx:for-item="itm" wx:key="{{itm}}">
             <view class='user'>
-              <image src='../../images/avatar.png'></image>
+              <image src='{{itm.avatarUrl}}'></image>
               <view class='right'>
                 <text class='name'>{{itm.userId}}</text>
                 <text>{{itm.createDate}}</text>
@@ -88,7 +88,7 @@
       </view>
 
     </view>
-    <view class='item'>
+    <!-- <view class='item'>
       <view class='user'>
         <image src='../../images/avatar.png'></image>
         <view class='right'>
@@ -145,7 +145,7 @@
         <view>
           <image src='../../images/message.png'></image>评论</view>
       </view>
-    </view>
+    </view> -->
 
   </view>
 
