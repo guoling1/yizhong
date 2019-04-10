@@ -17,7 +17,9 @@
     "pages/auth/auth",
     "pages/registMsg/registMsg",
     "pages/wait/wait",
-    "pages/feedback/feedback"
+    "pages/feedback/feedback",
+    "pages/help/help",
+    "pages/about/about"
   ],
   "window": {
     "backgroundTextStyle": "dark",
@@ -30,7 +32,7 @@
     "selectedColor": "#565656",
     "list": [
       {
-        "selectedIconPath": "images/tab1.png",
+        "selectedIconPath": "images/tab11.png",
         "iconPath": "images/tab1.png",
         "pagePath": "pages/index/index",
         "text": "校友足迹"

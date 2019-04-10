@@ -1,0 +1,7 @@
+<!--pages/help/help.wxml-->
+<view class='content'>
+  <view class='title'>{{helpTitle}}</view>
+  <!-- <text class='des'>{{education}}</text> -->
+   <import src="../../wxParse/wxParse.wxml"/> 
+  <template is="wxParse" data="{{wxParseData:helpAnswer.nodes}}" />
+</view>

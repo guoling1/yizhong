@@ -67,11 +67,12 @@ function initChart(canvas, width, height) {
     }],
 
   };
-  canvas.setChart(chart);
-  echarts.registerMap('china', geoJson);
-  chart.setOption(option);
-
-  return chart;
+  setTimeout(function(){
+    canvas.setChart(chart);
+    echarts.registerMap('china', geoJson);
+    chart.setOption(option);
+    return chart;
+  },2000)
 }
 Page({
   data: {

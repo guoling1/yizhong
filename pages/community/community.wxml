@@ -46,7 +46,7 @@
       </view>
       <view wx-if="{{item.isReply}}">
         <view class='textBox'>
-          <textarea bindinput='textValue' data-index='{{index}}' placeholder='输入评论...'></textarea>
+          <textarea bindinput='textValue' data-index='{{index}}' placeholder='输入评论...' value='{{item.content}}'></textarea>
           <view class="textBtn" bindtap='msgSubmit' data-index='{{index}}' data-id="{{item.messageId}}" data-content='{{item.content}}'>评论</view>
         </view>
         <view class='message'>

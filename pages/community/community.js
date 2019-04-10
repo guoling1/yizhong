@@ -20,11 +20,7 @@ Page({
     vertical: false,
     autoplay: true,
     interval: 2000,
-    duration: 500,
-    motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    duration: 500
   },
   // 获取公告
   getNotice() {
@@ -58,13 +54,13 @@ Page({
     page = page + 1;
     wx.request({
       url: getApp().globalData.url + '/sys/message/allcascade',
-      method: 'post',
+      method: 'get',
       header: {
-        "Content-Type": "application/x-www-form-urlencoded"
+        // "Content-Type": "application/x-www-form-urlencoded"
       },
       data: {
-        orgId: getApp().globalData.userInfo.grade,
-        userId: getApp().globalData.userInfo.id,
+        orgId: getApp().globalData.userInfo.classes,
+        // userId: getApp().globalData.userInfo.id,
         page: page,
         rows: rows
       },
@@ -151,11 +147,12 @@ Page({
           wx.showToast({
             title: '评论成功',
           })
+          var list = that.data.messageList;
           list[e.target.dataset.index].content = '';
           that.setData({
             messageList: list
           })
-          var list = that.data.messageList;
+          
           wx.request({
             url: getApp().globalData.url + '/sys/messageDetailList',
             method: 'get',
