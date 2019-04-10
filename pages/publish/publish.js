@@ -53,7 +53,7 @@ Page({
         },
         data: {
           openid: getApp().globalData.userInfo.openid,
-          orgId: getApp().globalData.userInfo.grade,
+          orgId: getApp().globalData.userInfo.classes,
           userId: getApp().globalData.userInfo.id,
           userName: getApp().globalData.userInfo.name,
           message: message,

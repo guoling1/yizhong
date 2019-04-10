@@ -1,0 +1,17 @@
+/* pages/about/about.wxss */
+.content{
+  padding: 34rpx 30rpx 48rpx;
+  margin-bottom: 20rpx;
+  background: #fff;
+}
+.content .title{
+  font-size: 34rpx;
+  font-weight: bold;
+  margin: 0 0 39rpx 0;
+  height: 42rpx;
+  line-height: 42rpx;
+  text-align: center;
+}
+.content .des{
+  font-size: 28rpx;
+}
