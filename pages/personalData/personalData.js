@@ -5,42 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userData: { "page": 1,
-		"rows": 10,
-		"id": 57,
-		"loginName": "oxzPj5PaJ9zsBq7lcBrX6NPFvucw", 
-		"name": "小伙", 
-		"password": "060fdbbf77d0af2157e10eb9cdfe6cec", 
-		"sex": 0, 
-		"age": 0,
-		"phone": "123****8901",
-		"userType": 0,
-  "status": 0,
-		"userStation": null, 
-  "delFlag": 0,
-  "updateTime": "2019-03-16 16:23:22",
-		"createTime": null,
-		"lastTime": null,
-		"grade": "2011届",
-		"classes": "二班",
-		"province": "河北",
-		"city": "Shijiazhuang",
-		"company": "锦诚科技",
-		"post": "开发", 
-		"industry": "医药",
-		"openid": "oxzPj5PaJ9zsBq7lcBrX6NPFvucw", 
-		"sessionKey": null, 
-  "avatarUrl": "111",
-  "latitude": "553.2",
-		"longitude": "553.2",
-		"learningTime": "2008-2012",
-		"graduationTime": "2012",
-		"university": "河北工程大学",
-		"headmaster": "王忠",
-		"teacherInClass": "张峰，李琼，王赛",
-		"competitionCoach": "詹飞谷", 
-		"others": "很好很强大",
-		"orgId": 27},
+    userData: {},
     id:''
   },
 
@@ -48,7 +13,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
     var that = this;
     this.setData({
       id: options.id
@@ -57,7 +21,7 @@ Page({
       title: '玩命加载中',
     })
     wx.request({
-      url: getApp().globalData.url + '/sys/users/'+options.id,
+      url: getApp().globalData.url + '/sys/users/'+options.id+'/'+getApp().globalData.userInfo.id,
       method: 'get',
       // header: {
       //   "Content-Type": "application/x-www-form-urlencoded"
