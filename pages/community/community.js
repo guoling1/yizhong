@@ -58,9 +58,9 @@ Page({
     page = page + 1;
     wx.request({
       url: getApp().globalData.url + '/sys/message/allcascade',
-      method: 'post',
+      method: 'get',
       header: {
-        "Content-Type": "application/x-www-form-urlencoded"
+        // "Content-Type": "application/x-www-form-urlencoded"
       },
       data: {
         orgId: getApp().globalData.userInfo.grade,
