@@ -122,23 +122,88 @@ var mydata = [{
 
 App({
   onLaunch: function() {
-    this.getData()
+    // if (this.getUser){
+      this.getUser()
+    // }
+    // this.getUser()
+    // this.getData()
   },
   globalData: {
     userInfo: null,
+    token:'',
     url: 'http://hdjincheng.6655.la',
     // url:'http://24323j007d.wicp.vip',
     // url: 'http://tbk.o87.net',
     chartsData: []
   },
+  // 获取登录信息
+  getUser(){
+    var that = this;
+    wx.login({
+      success: function (res) {
+        var code = res.code; //登录凭证
+        if (code) {
+          wx.getUserInfo({  //2、调用获取用户信息接口
+            success: function (res) {
+              //3.请求自己的服务器，解密用户信息 获取unionId等加密信息
+              wx.request({
+                url: that.globalData.url + '/decodeUserInfo',
+                method: 'get',
+                header: {
+                  "Content-Type": "applciation/json"
+                },
+                data: {
+                  encryptedData: res.encryptedData,
+                  iv: res.iv,
+                  code: code
+                },
+                success: function (res) {
+                  if (res.data.code == 200) {
+                    var data = res.data.data;
+                    that.globalData.userInfo = data.user;
+                    that.globalData.token = data.token;
+                    that.getData()
+                    if (data.status == 1) {
+                      wx.reLaunch({
+                        url: '/pages/auth/auth',
+                      })
+                    } else if (data.status == 2) {
+                      wx.reLaunch({
+                        url: '/pages/wait/wait',
+                      })
+                    }
+                  } else {
+                    console.log('2解密失败')
+                  }
+                },
+                fail: function () {
+                  console.log('1系统错误')
+                }
+              })
+            },
+            fail: function () {
+              console.log('获取用户信息失败')
+            }
+          })
+        } else {
+          console.log('获取用户登录态失败！' + r.errMsg)
+        }
+      },
+      fail: function () {
+        console.log('登陆失败')
+      }
+    })
+  },
   // 获取地图信息
   getData() {
     var that = this
     wx.request({
-      url: this.globalData.url + '/sys/usersAllProvince',
+      url: that.globalData.url + '/sys/usersAllProvince',
       method: 'get',
+      header:{
+        'X-AUTH-TOKEN': that.globalData.token
+      },
       success: function(res) {
-        // if (res.data.code == 200) {
         var data = res.data.data;
         for (var i in data) {
           for (var j in mydata) {
@@ -147,15 +212,7 @@ App({
             }
           }
         }
-        that.globalData.chartsData = mydata
-        console.log(1)
-        if (that.employIdCallback) {
-          console.log(2)
-          that.employIdCallback(mydata);
-        }
-        // } else {
-        //   console.log('2解密失败')
-        // }
+        that.globalData.chartsData = mydata;
       },
       fail: function() {
         console.log('1系统错误')

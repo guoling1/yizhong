@@ -1,5 +1,6 @@
 // pages/about/about.js
 var WxParse = require('../../wxParse/wxParse.js');
+const app = getApp();
 Page({
 
   /**
@@ -19,10 +20,11 @@ Page({
   getData(){
     var that = this;
     wx.request({
-      url: getApp().globalData.url + '/sys/about/activate',
+      url: getApp().globalData.url + '//sys/about/activate',
       method: 'get',
       header: {
-        "Content-Type": "applciation/json"
+        "Content-Type": "applciation/json",
+        'X-AUTH-TOKEN': app.globalData.token
       },
       success: function (res) {
         if (res.data.code == 200) {

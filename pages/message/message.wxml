@@ -1,9 +1,9 @@
 <!--pages/message/message.wxml-->
 <view class='message_box'>
-  <view class='detail'>您的游记《人生有多少个20年》收到评论消息。</view>
+  <view class='detail'>{{applyName}}申请查看您的联系方式。</view>
   <view class='bottom'>
-    <text>同意</text>
+    <text bindtap='agree' data-flag='0'>同意</text>
     <text class='line'></text>
-    <text>拒绝</text>
+    <text bindtap='agree' data-flag='-1'>拒绝</text>
   </view>
 </view>

@@ -1,4 +1,5 @@
 // pages/feedback/feedback.js
+const app = getApp()
 Page({
 
   /**
@@ -29,10 +30,11 @@ Page({
         title: '反馈中',
       })
       wx.request({
-        url: getApp().globalData.url + '/sys/feedback',
+        url: getApp().globalData.url + '/rest/sys/feedback',
         method: 'post',
         header: {
-          "Content-Type": "application/x-www-form-urlencoded"
+          "Content-Type": "application/x-www-form-urlencoded",
+          'X-AUTH-TOKEN': app.globalData.token
         },
         data: {
           userId: getApp().globalData.userInfo.id,

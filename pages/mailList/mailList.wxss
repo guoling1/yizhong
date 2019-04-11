@@ -23,7 +23,7 @@
   right:59rpx;
   width:26rpx;
   height:26rpx;
-  z-index:1;
+  z-index:1111;
 }
 .list{
   margin-top: 18rpx;

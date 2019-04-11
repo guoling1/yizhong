@@ -3,7 +3,7 @@
   <image src='../../images/bannerMy.png' class='bg'></image>
   <view class='content'>
     <image src='{{userInfo.avatarUrl}}'></image>
-    <view class='name'>{{userInfo.nickName}}</view>
+    <view class='name'>{{userInfo.name}}</view>
     <view>2019届·04班</view>
   </view>
 </view>

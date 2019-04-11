@@ -1,13 +1,15 @@
 // pages/mailList/mailList.js
 var page = 0;
 var rows = 10;
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    userList: []
+    userList: [],
+    search:''
   },
 
   /**
@@ -23,19 +25,33 @@ Page({
   onReady: function () {
   
   },
+  searchInput(e){
+    this.setData({
+      search: e.detail.value
+    })
+  },
+  searchFn(){
+    page=0;
+    this.setData({
+      userList:[]
+    })
+    this.getData()
+  },
   getData() {
     var that = this;
     wx.showLoading({
       title: '玩命加载中',
     })
     wx.request({
-      url: getApp().globalData.url + '/sys/users/list',
+      url: getApp().globalData.url + '/rest/sys/users/list',
       method: 'get',
       header: {
         "Content-Type": "applciation/json",
-        "token": getApp().globalData.userInfo.openid
+        'X-AUTH-TOKEN': app.globalData.token
       },
       data:{
+        name: that.data.search,
+        id: getApp().globalData.userInfo.id,
         orgId: getApp().globalData.userInfo.classes,
         openid: getApp().globalData.userInfo.openid,
         page:page,

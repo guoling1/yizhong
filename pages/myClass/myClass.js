@@ -9,15 +9,15 @@ Page({
     university:''
   },
   formSubmit(e) {
-    console.log('form发生了submit事件，携带数据为：', e.detail.value)
     wx.showLoading({
       title: '修改中',
     })
     wx.request({
-      url: getApp().globalData.url + '/sys/usersByOpenid',
+      url: getApp().globalData.url + '/rest/sys/usersByOpenid',
       method: 'post',
       header: {
-        "Content-Type": "application/x-www-form-urlencoded"
+        "Content-Type": "application/x-www-form-urlencoded",
+        'X-AUTH-TOKEN': getApp().globalData.token
       },
       data: {
         openid: getApp().globalData.userInfo.openid,

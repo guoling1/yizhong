@@ -29,16 +29,14 @@ Page({
     wx.chooseImage({
       success: function (res) {
         var imgsrc = res.tempFilePaths;
-        console.log(imgsrc)
         that.uploadimg({
-          url: getApp().globalData.url + '/sys/photo/upload',//这里是你图片上传的接口
+          url: getApp().globalData.url + '/rest/sys/photo/upload',//这里是你图片上传的接口
           path: imgsrc//这里是选取的图片的地址数组
         });
       }
     })
   },
   submit(e){
-    console.log(e)
     var that = this;
     var message = e.detail.value.message
     if(message){
@@ -46,10 +44,11 @@ Page({
         title: '提交中',
       })
       wx.request({
-        url: getApp().globalData.url + '/sys/message',
+        url: getApp().globalData.url + '/rest/sys/message',
         method: 'post',
         header: {
-          "Content-Type": "application/x-www-form-urlencoded"
+          "Content-Type": "application/x-www-form-urlencoded",
+          'X-AUTH-TOKEN': getApp().globalData.token
         },
         data: {
           openid: getApp().globalData.userInfo.openid,
@@ -90,7 +89,6 @@ Page({
     wx.showLoading({
       title: '上传中',
     })
-    console.log(data)
     var that = this,
     i=data.i ? data.i : 0,//当前上传的哪张图片
     success=data.success ? data.success : 0,//上传成功的个数
@@ -101,7 +99,8 @@ Page({
       name: 'uploadFile',//这里根据自己的实际情况改
       formData: null,//这里是上传图片时一起上传的数据
       header: {
-        "Content-Type": "multipart/form-data"
+        "Content-Type": "multipart/form-data",
+        'X-AUTH-TOKEN': getApp().globalData.token
       },
       success: (resp) => {
         var data = JSON.parse(resp.data)
@@ -131,7 +130,7 @@ Page({
           data.fail = fail;
           setTimeout(function(){
             that.uploadimg(data);
-          },500)
+          },600)
           
         }
       }

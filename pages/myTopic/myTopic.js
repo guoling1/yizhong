@@ -25,10 +25,11 @@ Page({
     })
     page = page + 1;
     wx.request({
-      url: getApp().globalData.url + '/sys/message/allcascade',
+      url: getApp().globalData.url + '/rest/sys/message/allcascade',
       method: 'get',
       header: {
-        // "Content-Type": "application/x-www-form-urlencoded"
+        // "Content-Type": "application/x-www-form-urlencoded",
+        'X-AUTH-TOKEN': getApp().globalData.token
       },
       data: {
         orgId: getApp().globalData.userInfo.classes,
@@ -71,10 +72,11 @@ Page({
         messageList: list
       })
       wx.request({
-        url: getApp().globalData.url + '/sys/messageDetailList',
+        url: getApp().globalData.url + '/rest/sys/messageDetailList',
         method: 'get',
         header: {
-          "Content-Type": "application/x-www-form-urlencoded"
+          "Content-Type": "application/x-www-form-urlencoded",
+          'X-AUTH-TOKEN': getApp().globalData.token
         },
         data: {
           messageId: e.target.dataset.id,
@@ -104,10 +106,11 @@ Page({
   msgSubmit(e) {
     var that = this
     wx.request({
-      url: getApp().globalData.url + '/sys/reply',
+      url: getApp().globalData.url + '/rest/sys/reply',
       method: 'post',
       header: {
-        "Content-Type": "application/x-www-form-urlencoded"
+        "Content-Type": "application/x-www-form-urlencoded",
+        'X-AUTH-TOKEN': getApp().globalData.token
       },
       data: {
         replyMessage: this.data.messageList[e.target.dataset.index].content,//评论内容，
@@ -126,10 +129,11 @@ Page({
           })
           
           wx.request({
-            url: getApp().globalData.url + '/sys/messageDetailList',
+            url: getApp().globalData.url + '/rest/sys/messageDetailList',
             method: 'get',
             header: {
-              "Content-Type": "application/x-www-form-urlencoded"
+              "Content-Type": "application/x-www-form-urlencoded",
+              'X-AUTH-TOKEN': getApp().globalData.token
             },
             data: {
               messageId: e.target.dataset.id
@@ -158,11 +162,12 @@ Page({
   // 点赞
   agree(e) {
     wx.request({
-      url: getApp().globalData.url + '/sys/messagePointsAdd',
+      url: getApp().globalData.url + '/rest/sys/messagePointsAdd',
       method: 'get',
-      // header: {
-      //   "Content-Type": "application/x-www-form-urlencoded"
-      // },
+      header: {
+        // "Content-Type": "application/x-www-form-urlencoded",
+        'X-AUTH-TOKEN': getApp().globalData.token
+      },
       data: {
         userId: getApp().globalData.userInfo.id,//点赞用户id, 
         messageId: e.target.dataset.id//消息id

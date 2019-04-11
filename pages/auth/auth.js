@@ -1,4 +1,5 @@
 // pages/auth/auth.js
+const app = getApp();
 Page({
 
   /**
@@ -36,7 +37,7 @@ Page({
   getGrade() {
     var that = this;
     wx.request({
-      url: getApp().globalData.url + '/sys/orgs/treeGrade',//自己的服务接口地址
+      url: getApp().globalData.url + '/sys/orgs/treeGrade',
       method: 'get',
       header: {
         "Content-Type": "applciation/json"

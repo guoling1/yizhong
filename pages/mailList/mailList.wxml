@@ -1,6 +1,6 @@
 <view class='search'>
-  <input placeholder='搜索'></input>
-  <image src='../../images/search.png'></image>
+  <input placeholder='搜索' bindinput="searchInput"></input>
+  <image src='../../images/search.png' bindtap='searchFn'></image>
 </view>
 <view class='list'>
   <view class='item' bindtap='toDetail' data-id='{{item.id}}' wx:for="{{userList}}" wx:key="{{item.id}}">

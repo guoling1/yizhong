@@ -1,9 +1,7 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs",
     "pages/community/community",
-    "pages/track/track",
     "pages/mailList/mailList",
     "pages/personalData/personalData",
     "pages/my/my",

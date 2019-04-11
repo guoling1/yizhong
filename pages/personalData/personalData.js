@@ -21,13 +21,20 @@ Page({
       title: '玩命加载中',
     })
     wx.request({
-      url: getApp().globalData.url + '/sys/users/'+options.id+'/'+getApp().globalData.userInfo.id,
+      url: getApp().globalData.url + '/rest/sys/users/'+options.id+'/'+getApp().globalData.userInfo.id,
       method: 'get',
-      // header: {
-      //   "Content-Type": "application/x-www-form-urlencoded"
-      // },
+      header: {
+        // "Content-Type": "application/x-www-form-urlencoded",
+        'X-AUTH-TOKEN': getApp().globalData.token
+      },
       success: function (res) {
         if (res.data.code == 200) {
+          if (/\*\*/.test(res.data.data.phone)){
+            res.data.data.isPhone = true;
+          }else{
+            res.data.data.isPhone = false;
+          }
+          console.log(res.data.data)
           that.setData({
             userData: res.data.data
           })
@@ -49,12 +56,12 @@ Page({
   // 申请查看电话
   apply(){
     var that = this;
-    console.log(getApp().globalData.userInfo.id)
     wx.request({
-      url: getApp().globalData.url + '/sys/apply',
+      url: getApp().globalData.url + '/rest/sys/apply',
       method: 'post',
       header: {
-        "Content-Type": "application/x-www-form-urlencoded"
+        "Content-Type": "application/x-www-form-urlencoded",
+        'X-AUTH-TOKEN': getApp().globalData.token
       },
       data:{
         fromUserId: getApp().globalData.userInfo.id,//发起申请的用户id，

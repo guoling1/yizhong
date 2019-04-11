@@ -1,20 +1,21 @@
 // pages/messageList/messageList.js
 var page=0;
 var rows=10;
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    
+    messageList:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getMessage()
+    
   },
 
   /**
@@ -28,7 +29,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    page=0
+    this.setData({
+      messageList: []
+    })
+    this.getMessage()
   },
   // 获取话题
   getMessage() {
@@ -38,10 +43,11 @@ Page({
     })
     page = page + 1;
     wx.request({
-      url: getApp().globalData.url + '/sys/apply',
-      method: 'post',
+      url: getApp().globalData.url + '/rest/sys/apply',
+      method: 'get',
       header: {
-        "Content-Type": "application/x-www-form-urlencoded"
+        "Content-Type": "application/x-www-form-urlencoded",
+        'X-AUTH-TOKEN': app.globalData.token
       },
       data: {
         // orgId: getApp().globalData.userInfo.grade,
@@ -51,7 +57,7 @@ Page({
         rows: rows
       },
       success: function (res) {
-        if (res.data.code == 200) {
+        if (res.data.code == 0) {
           var messageList = that.data.messageList;
           for (var i = 0; i < res.data.rows.length; i++) {
             messageList.push(res.data.rows[i]);
@@ -95,7 +101,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+    this.getMessage();
   },
 
   /**

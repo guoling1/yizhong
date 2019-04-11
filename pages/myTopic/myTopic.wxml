@@ -16,8 +16,8 @@
       <text class='des'>{{item.message}}</text>
       <view class='btn'>
         <view bindtap='agree' data-id="{{item.messageId}}">
-          <image src='../../images/zan1.png' wx:if="{{item.isPoints}}"></image>
-          <image src='../../images/zan.png' wx:else></image>
+          <image src='../../images/zan1.png' wx:if="{{item.isPoints}}" data-id="{{item.messageId}}"></image>
+          <image src='../../images/zan.png' wx:else data-id="{{item.messageId}}"></image>
           点赞</view>
         <view class='line'></view>
         <view bindtap='openReply' data-index='{{index}}' data-id="{{item.messageId}}"><image src='../../images/message.png' data-index='{{index}}' data-id="{{item.messageId}}"></image>评论</view>

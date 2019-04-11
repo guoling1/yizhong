@@ -1,16 +1,18 @@
 <!--pages/messageList/messageList.wxml-->
-<view class='message_box'>
+<view class='message_box' wx:for="{{messageList}}" wx:key="{{index}}">
   <view class='top'>
-    <text class='tip'></text>
+    <text class='tip' wx:if="{{item.applyFlag==1}}"></text>
     <text class='title'>系统消息</text>
-    <text class='date'>2018-02-26</text>
+    <text class='date'>{{item.applyDate}}</text>
   </view>
-  <view class='detail'>您的游记《人生有多少个20年》收到评论消息。</view>
+  <view class='detail'>{{item.fromUserName}}申请查看您的联系方式。</view>
   <view class='bottom'>
-    <text>查看详情>></text>
+    <text class='bottom' wx:if="{{item.applyFlag==0}}">已同意</text>
+    <text class='bottom' wx:if="{{item.applyFlag==-1}}">已拒绝</text>
+    <navigator class='bottom' wx:if="{{item.applyFlag==1}}" url='/pages/message/message?applyId={{item.applyId}}&applyName={{item.fromUserName}}'>查看详情>></navigator>
   </view>
 </view>
-<view class='message_box'>
+<!-- <view class='message_box'>
   <view class='top'>
     <text class='tip'></text>
     <text class='title'>系统消息</text>
@@ -18,4 +20,4 @@
   </view>
   <view class='detail'>您的游记《人生有多少个20年》收到评论消息。</view>
   <navigator class='bottom' url='/pages/message/message'>查看详情>></navigator>
-</view>
+</view> -->
