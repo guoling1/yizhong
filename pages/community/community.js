@@ -191,6 +191,8 @@ Page({
   },
   // 点赞
   agree(e) {
+    var that = this;
+    console.log(e)
     wx.request({
       url: getApp().globalData.url + '/rest/sys/messagePointsAdd',
       method: 'get',
@@ -205,6 +207,11 @@ Page({
       success: function (res) {
         if (res.data.code == '200') {
           // 变蓝
+          var list = that.data.messageList;
+          list[e.currentTarget.dataset.index].isPoints = 1
+          that.setData({
+            messageList: list
+          })
         } else {
           console.log('系统错误1')
         }
@@ -251,8 +258,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.getNotice();
-    this.getMessage();
+    
   },
 
   /**
@@ -266,7 +272,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    page=0;
+    this.setData({
+      messageList:[]
+    })
+    this.getNotice();
+    this.getMessage();
   },
 
   /**

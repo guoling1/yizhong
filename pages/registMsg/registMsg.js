@@ -62,7 +62,6 @@ Page({
     })
   },
   formSubmit(e) {
-    
     var data = e.detail.value;
     var that = this;
     data.grade = this.data.auth.gradeId;
@@ -84,6 +83,7 @@ Page({
       data.others = this.data.others;
       data.industry = this.data.industryList[data.industry].dictCode;
       data.learningTime = data.learningTime + '-' + data.graduationTime;
+      data.status = 2;
       wx.request({
         url: getApp().globalData.url + '/sys/usersByOpenid',
         method: 'post',
@@ -106,6 +106,7 @@ Page({
         }
       })
     } else {
+      console.log(data)
       wx.showToast({
         title: '请填写完整信息',
         icon: 'none'
@@ -166,6 +167,7 @@ Page({
                   icon: 'none',
                   duration: 1000
                 })
+                vm.getUserLocation();
               } else if (res.confirm) {
                 wx.openSetting({
                   success: function(dataAu) {

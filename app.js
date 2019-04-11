@@ -163,11 +163,11 @@ App({
                     that.globalData.userInfo = data.user;
                     that.globalData.token = data.token;
                     that.getData()
-                    if (data.status == 1) {
+                    if (data.user.status == 1) {
                       wx.reLaunch({
                         url: '/pages/auth/auth',
                       })
-                    } else if (data.status == 2) {
+                    } else if (data.user.status == 2) {
                       wx.reLaunch({
                         url: '/pages/wait/wait',
                       })
@@ -183,6 +183,9 @@ App({
             },
             fail: function () {
               console.log('获取用户信息失败')
+              wx.reLaunch({
+                url: '/pages/mask/mask',
+              })
             }
           })
         } else {

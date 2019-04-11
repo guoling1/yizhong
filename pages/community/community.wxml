@@ -24,7 +24,7 @@
   <view class='content'>
     <view class='item' wx:for="{{messageList}}" wx:key="{{index}}">
       <view class='user'>
-        <navigator url='/pages/personalData/personalData'>
+        <navigator url='/pages/personalData/personalData?id={{item.userId}}'>
           <image src='{{item.avatarUrl}}'></image>
         </navigator>
         <view class='right'>
@@ -37,7 +37,7 @@
       </view>
       <text class='des'>{{item.message}}</text>
       <view class='btn'>
-        <view bindtap='agree' data-id="{{item.messageId}}">
+        <view bindtap='agree' data-id="{{item.messageId}}" data-index='{{index}}'>
           <image src='../../images/zan1.png' wx:if="{{item.isPoints}}" data-id="{{item.messageId}}"></image>
           <image src='../../images/zan.png' wx:else data-id="{{item.messageId}}"></image>
           点赞</view>

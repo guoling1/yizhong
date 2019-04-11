@@ -2,7 +2,7 @@
 <view class='top'>
   <image src='../../images/bg.png' class='bg'></image>
   <view class='base_box'>
-    <image src='../../images/avatar.png'></image>
+    <image src='{{userData.avatarUrl}}'></image>
     <view class='name'>{{userData.name}}</view>
     <view class='date'>2019年毕业·初三四班</view>
   </view>
