@@ -207,13 +207,20 @@ Page({
       success: function (res) {
         if (res.data.code == '200') {
           // 变蓝
+          wx.showToast({
+            title: '点赞成功',
+          })
           var list = that.data.messageList;
           list[e.currentTarget.dataset.index].isPoints = 1
+          list[e.currentTarget.dataset.index].numberOfPoints = list[e.currentTarget.dataset.index].numberOfPoints+1
           that.setData({
             messageList: list
           })
         } else {
-          console.log('系统错误1')
+          wx.showToast({
+            title: res.data.msg,
+            icon:'none'
+          })
         }
 
       },
@@ -298,7 +305,13 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-
+    page = 0;
+    this.setData({
+      messageList: []
+    })
+    this.getNotice();
+    this.getMessage();
+    wx.stopPullDownRefresh()
   },
 
   /**
