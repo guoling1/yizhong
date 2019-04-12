@@ -1,7 +1,6 @@
 // pages/messageList/messageList.js
-var page=0;
-var rows=10;
-var params;
+var page = 0;
+var rows = 10;
 const app = getApp()
 Page({
 
@@ -9,67 +8,40 @@ Page({
    * 页面的初始数据
    */
   data: {
-    type:1,
-    messageList:[]
+    noticList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    page=0
+    page = 0
     this.setData({
-      messageList: [],
-      type: 1,
+      noticList: []
     })
-    params = {
-      fromUserId: getApp().globalData.userInfo.id,
-      rows: rows
-    }
-    this.getMessage(params)
-  },
-  change(e){
-    var that = this;
-    this.setData({
-      type:e.currentTarget.dataset.type,
-      messageList:[]
-    })
-    if(that.data.type==1){
-      params = {
-        fromUserId: getApp().globalData.userInfo.id,
-        rows: rows
-      }
-    }else{
-      params = {
-        toUserId: getApp().globalData.userInfo.id,
-        rows: rows
-      }
-    }
-    page = 0;
-    that.getMessage(params)
+    this.getMessage()
   },
   // 获取话题
-  getMessage(params) {
+  getMessage() {
     var that = this;
     wx.showLoading({
       title: '玩命加载中',
     })
     page = page + 1;
-    params.page = page;
     wx.request({
       url: getApp().globalData.url + '/rest/sys/apply',
       method: 'get',
@@ -77,7 +49,13 @@ Page({
         "Content-Type": "application/x-www-form-urlencoded",
         'X-AUTH-TOKEN': app.globalData.token
       },
-      data: params,
+      data: {
+        // orgId: getApp().globalData.userInfo.grade,
+        // userId: getApp().globalData.userInfo.id,
+        toUserId: getApp().globalData.userInfo.id,
+        page: page,
+        rows: rows
+      },
       success: function (res) {
         if (res.data.code == 0) {
           var messageList = that.data.messageList;
@@ -90,12 +68,10 @@ Page({
           wx.hideLoading();
         } else {
           console.log('')
-          wx.hideLoading();
         }
       },
       fail: function () {
         console.log('系统错误');
-        wx.hideLoading();
       }
     })
   },
@@ -104,46 +80,34 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    var that = this;
-    if (that.data.type == 1) {
-      params = {
-        fromUserId: getApp().globalData.userInfo.id,
-        rows: rows
-      }
-    } else {
-      params = {
-        toUserId: getApp().globalData.userInfo.id,
-        rows: rows
-      }
-    }
-    this.getMessage(params);
+    this.getMessage();
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+
   }
 })

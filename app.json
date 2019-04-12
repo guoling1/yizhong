@@ -18,7 +18,9 @@
     "pages/feedback/feedback",
     "pages/help/help",
     "pages/about/about",
-    "pages/mask/mask"
+    "pages/mask/mask",
+    "pages/noticList/noticList",
+    "pages/notice/notice"
   ],
   "window": {
     "backgroundTextStyle": "dark",

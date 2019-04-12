@@ -35,4 +35,4 @@
   <text class='con'>{{userData.teacherInClass}}</text>
 </view>
 <view class='bottom' bindtap='apply' wx:if="{{userData.isPhone}}">申请查看联系方式</view>
-<view class='bottom' bindtap='apply' wx:else>{{userData.phone}}</view>
+<view class='bottom' wx:else>{{userData.phone}}</view>

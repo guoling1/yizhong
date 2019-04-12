@@ -1,6 +1,6 @@
 /* pages/messageList/messageList.wxss */
 page{
-  padding-top: 90rpx;
+  padding-top: 45rpx;
 }
 .message_box{
   margin: 0 auto 30rpx;
@@ -39,20 +39,4 @@ page{
   padding: 30rpx 0;
   font-size: 28rpx;
   color: #666;
-}
-.tab{
-  position: fixed;
-  top: 0;
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-  background: #fff;
-  line-height: 70rpx;
-  font-size: 24rpx;
-  font-weight: bold;
-  box-shadow:0 6rpx 25rpx #d8eaff;
-}
-.tab .active{
-  border-bottom: 4rpx solid #4e93f2;
-  color: #4e93f2;
 }

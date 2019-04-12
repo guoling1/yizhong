@@ -1,15 +1,21 @@
 <!--pages/messageList/messageList.wxml-->
+<view class='tab'>
+  <text class='{{type==1?"active":""}}' bindtap='change' data-type='1'>发出的申请</text>
+  <text class='{{type==2?"active":""}}' bindtap='change' data-type='2'>收到的申请</text>
+</view>
 <view class='message_box' wx:for="{{messageList}}" wx:key="{{index}}">
   <view class='top'>
     <text class='tip' wx:if="{{item.applyFlag==1}}"></text>
     <text class='title'>系统消息</text>
     <text class='date'>{{item.applyDate}}</text>
   </view>
-  <view class='detail'>{{item.fromUserName}}申请查看您的联系方式。</view>
+  <view class='detail' wx:if="{{type==2}}">{{item.fromUserName}}申请查看您的联系方式。</view>
+  <view class='detail' wx:if="{{type==1}}">您申请查看{{item.toUserName}}的联系方式。</view>
   <view class='bottom'>
     <text class='bottom' wx:if="{{item.applyFlag==0}}">已同意</text>
     <text class='bottom' wx:if="{{item.applyFlag==-1}}">已拒绝</text>
-    <navigator class='bottom' wx:if="{{item.applyFlag==1}}" url='/pages/message/message?applyId={{item.applyId}}&applyName={{item.fromUserName}}'>查看详情>></navigator>
+    <text class='bottom' wx:if="{{item.applyFlag==1&&type==1}}">等待对方同意</text>
+    <navigator class='bottom' wx:if="{{item.applyFlag==1&&type==2}}" url='/pages/message/message?applyId={{item.applyId}}&applyName={{item.fromUserName}}'>查看详情>></navigator>
   </view>
 </view>
 <!-- <view class='message_box'>

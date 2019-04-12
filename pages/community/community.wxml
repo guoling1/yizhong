@@ -16,10 +16,10 @@
       <image src='../../images/search.png'></image>
     </view> -->
     <!-- <view class='notice' wx:if="{{noticeTitle!=null}}"> -->
-    <view class='notice'>
+    <navigator url='/pages/noticList/noticList' class='notice'>
       <image src='../../images/notice.png'></image>
       <text>{{noticeTitle?noticeTitle:''}}</text>
-    </view>
+    </navigator>
   </view>
   <view class='content'>
     <view class='item' wx:for="{{messageList}}" wx:key="{{index}}">
