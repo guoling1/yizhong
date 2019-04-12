@@ -20,7 +20,7 @@ Page({
   getData(){
     var that = this;
     wx.request({
-      url: getApp().globalData.url + '//sys/about/activate',
+      url: getApp().globalData.url + '/rest/sys/about/activate',
       method: 'get',
       header: {
         "Content-Type": "applciation/json",

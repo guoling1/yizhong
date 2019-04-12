@@ -4,7 +4,7 @@
 </view>
 <view class='list'>
   <view class='item' bindtap='toDetail' data-id='{{item.id}}' wx:for="{{userList}}" wx:key="{{item.id}}">
-    <image src='../../images/avatar.png'></image>
+    <image src='{{item.avatarUrl}}'></image>
     <view class='right'>
       <view class='name'>{{item.name}}</view>
       <view class='bottom'>

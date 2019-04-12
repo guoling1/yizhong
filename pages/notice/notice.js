@@ -7,20 +7,20 @@ Page({
    * 页面的初始数据
    */
   data: {
-    helpTitle: '',
-    helpAnswer: ''
+    noticeTitle: '',
+    noticeAnswer: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getData()
+    this.getData(options.noticeId)
   },
-  getData() {
+  getData(id) {
     var that = this;
     wx.request({
-      url: getApp().globalData.url + '//sys/about/activate',
+      url: getApp().globalData.url + '/rest/sys/notice/'+id,
       method: 'get',
       header: {
         "Content-Type": "applciation/json",
@@ -29,10 +29,10 @@ Page({
       success: function (res) {
         if (res.data.code == 200) {
           that.setData({
-            helpTitle: res.data.data.aboutTitle,
+            noticeTitle: res.data.data.noticeTitle,
             // helpAnswer: res.data.data.helpAnswer
           })
-          WxParse.wxParse('helpAnswer', 'html', res.data.data.aboutAnswer, that, 15);
+          WxParse.wxParse('noticeAnswer', 'html', res.data.data.noticeAnswer, that, 15);
         } else {
           console.log('')
         }

@@ -43,35 +43,30 @@ Page({
     })
     page = page + 1;
     wx.request({
-      url: getApp().globalData.url + '/rest/sys/apply',
+      url: getApp().globalData.url + '/rest/sys/notice/activateAll',
       method: 'get',
       header: {
         "Content-Type": "application/x-www-form-urlencoded",
         'X-AUTH-TOKEN': app.globalData.token
       },
-      data: {
-        // orgId: getApp().globalData.userInfo.grade,
-        // userId: getApp().globalData.userInfo.id,
-        toUserId: getApp().globalData.userInfo.id,
-        page: page,
-        rows: rows
-      },
       success: function (res) {
         if (res.data.code == 0) {
-          var messageList = that.data.messageList;
+          var noticList = that.data.noticList;
           for (var i = 0; i < res.data.rows.length; i++) {
-            messageList.push(res.data.rows[i]);
+            noticList.push(res.data.rows[i]);
           }
           that.setData({
-            messageList: messageList
+            noticList: noticList
           })
           wx.hideLoading();
         } else {
           console.log('')
+          wx.hideLoading();
         }
       },
       fail: function () {
         console.log('系统错误');
+        wx.hideLoading();
       }
     })
   },

@@ -1,7 +1,7 @@
 <!--pages/about/about.wxml-->
 <view class='content'>
-  <view class='title'>{{helpTitle}}</view>
+  <view class='title'>{{noticeTitle}}</view>
   <!-- <text class='des'>{{education}}</text> -->
    <import src="../../wxParse/wxParse.wxml"/> 
-  <template is="wxParse" data="{{wxParseData:helpAnswer.nodes}}" />
+  <template is="wxParse" data="{{wxParseData:noticeAnswer.nodes}}" />
 </view>

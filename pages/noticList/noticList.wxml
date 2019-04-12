@@ -1,13 +1,12 @@
 <!--pages/messageList/messageList.wxml-->
-<view class='message_box' wx:for="{{messageList}}" wx:key="{{index}}">
+<view class='message_box' wx:for="{{noticList}}" wx:key="{{index}}">
   <view class='top'>
-    <text class='tip' wx:if="{{item.applyFlag==1}}"></text>
     <text class='title'>公告</text>
-    <text class='date'>{{item.applyDate}}</text>
+    <text class='date'>{{item.noticeTime}}</text>
   </view>
   <view class='detail'>{{item.noticeTitle}}</view>
   <view class='bottom'>
-    <navigator class='bottom' url='/pages/notice/notice?applyId={{item.applyId}}&applyName={{item.fromUserName}}'>查看详情>></navigator>
+    <navigator class='bottom' url='/pages/notice/notice?noticeId={{item.noticeId}}'>查看详情>></navigator>
   </view>
 </view>
 <!-- <view class='message_box'>
