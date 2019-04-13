@@ -156,59 +156,66 @@ Page({
   // 发表评论
   msgSubmit(e){
     var that = this
-    wx.request({
-      url: getApp().globalData.url + '/rest/sys/reply',
-      method: 'post',
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        'X-AUTH-TOKEN': app.globalData.token
-      },
-      data: {
-        replyMessage: this.data.messageList[e.target.dataset.index].content,//评论内容，
-        mId: e.target.dataset.id,//被评论的信息的id，
-        userId:getApp().globalData.userInfo.id//当前登录账户的id
-      },
-      success: function (res) {
-        if (res.data.code == '200') {
-          wx.showToast({
-            title: '评论成功',
-          })
-          var list = that.data.messageList;
-          list[e.target.dataset.index].content = '';
-          that.setData({
-            messageList: list
-          })
-          
-          wx.request({
-            url: getApp().globalData.url + '/rest/sys/messageDetailList',
-            method: 'get',
-            header: {
-              "Content-Type": "application/x-www-form-urlencoded",
-              'X-AUTH-TOKEN': app.globalData.token
-            },
-            data: {
-              messageId: e.target.dataset.id
-            },
-            success: function (res) {
-              list[e.target.dataset.index].replyList = res.data.rows;
-              list[e.target.dataset.index].content = '';
-              that.setData({
-                messageList: list
-              })
-            },
-            fail: function () {
-              console.log('系统错误');
-            }
-          })
-        } else {
-          console.log('系统错误1')
-        }
+    if (this.data.messageList[e.target.dataset.index].content==''){
+      wx.showToast({
+        title: '请填写评论内容',
+        icon:'none'
+      })
+    }else{
+      wx.request({
+        url: getApp().globalData.url + '/rest/sys/reply',
+        method: 'post',
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          'X-AUTH-TOKEN': app.globalData.token
+        },
+        data: {
+          replyMessage: this.data.messageList[e.target.dataset.index].content,//评论内容，
+          mId: e.target.dataset.id,//被评论的信息的id，
+          userId: getApp().globalData.userInfo.id//当前登录账户的id
+        },
+        success: function (res) {
+          if (res.data.code == '200') {
+            wx.showToast({
+              title: '评论成功',
+            })
+            var list = that.data.messageList;
+            list[e.target.dataset.index].content = '';
+            that.setData({
+              messageList: list
+            })
 
-      },
-      fail: function () {
-        console.log('系统错误');
-      }
-    })
+            wx.request({
+              url: getApp().globalData.url + '/rest/sys/messageDetailList',
+              method: 'get',
+              header: {
+                "Content-Type": "application/x-www-form-urlencoded",
+                'X-AUTH-TOKEN': app.globalData.token
+              },
+              data: {
+                messageId: e.target.dataset.id
+              },
+              success: function (res) {
+                list[e.target.dataset.index].replyList = res.data.rows;
+                list[e.target.dataset.index].content = '';
+                that.setData({
+                  messageList: list
+                })
+              },
+              fail: function () {
+                console.log('系统错误');
+              }
+            })
+          } else {
+            console.log('系统错误1')
+          }
+
+        },
+        fail: function () {
+          console.log('系统错误');
+        }
+      })
+    }
   },
   // 点赞
   agree(e) {
