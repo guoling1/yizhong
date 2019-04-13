@@ -28,6 +28,7 @@ Page({
       },
       success: function (res) {
         if (res.data.code == 200) {
+          res.data.data.noticeAnswer = res.data.data.noticeAnswer.replace(/http:\/\/localhost\//, getApp().globalData.url)
           that.setData({
             noticeTitle: res.data.data.noticeTitle,
             // helpAnswer: res.data.data.helpAnswer
