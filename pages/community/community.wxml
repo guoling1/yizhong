@@ -2,10 +2,10 @@
 <view class="container">
   <view class="page-section page-section-spacing swiper">
     <swiper autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style='height:100%'>
-      <block wx:for="{{swiperData}}" wx:key="*this">
+      <block wx:for="{{swiperData}}" wx:key="{{index}}">
         <swiper-item>
           <view class="swiper-item {{item}}">
-            <image src='{{item.picurl}}'></image>
+            <image src='{{url+"/resources/images/actimg/"+item.picUrl}}'></image>
             <!-- <image src='../../images/banner.png'></image> -->
           </view>
         </swiper-item>

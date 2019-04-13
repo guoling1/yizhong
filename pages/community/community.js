@@ -10,11 +10,12 @@ Page({
     url: getApp().globalData.url,
     noticeTitle: '',
     messageList: [],
-    swiperData: [{
-      picurl: '../../images/banner.png'
-    }, {
-      picurl: '../../images/banner.png'
-    }],
+    // swiperData: [{
+    //   picurl: '../../images/banner.png'
+    // }, {
+    //   picurl: '../../images/banner.png'
+    // }],
+    swiperData:[],
     news: [],
     page: 0,
     more: false,
@@ -22,6 +23,26 @@ Page({
     autoplay: true,
     interval: 2000,
     duration: 500
+  },
+  // 获取轮播图
+  getSwiper() {
+    var that = this;
+    wx.request({
+      url: getApp().globalData.url + '/rest/sys/pic/allcascade',
+      method: 'post',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        'X-AUTH-TOKEN': app.globalData.token
+      },
+      success: function (res) {
+          that.setData({
+            swiperData: res.data
+          })
+      },
+      fail: function () {
+        console.log('系统错误');
+      }
+    })
   },
   // 获取公告
   getNotice() {
@@ -285,6 +306,7 @@ Page({
     })
     this.getNotice();
     this.getMessage();
+    this.getSwiper()
   },
 
   /**
