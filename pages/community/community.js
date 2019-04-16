@@ -8,6 +8,7 @@ Page({
    */
   data: {
     url: getApp().globalData.url,
+    myId: '',
     noticeTitle: '',
     messageList: [],
     // swiperData: [{
@@ -66,6 +67,15 @@ Page({
       fail: function() {
         console.log('系统错误');
       }
+    })
+  },
+  openBig(event){
+    var src = event.currentTarget.dataset.src;//获取data-src
+    // var imgList = event.currentTarget.dataset.list;//获取data-list
+    //图片预览
+    wx.previewImage({
+      // current: src, // 当前显示图片的http链接
+      urls: [src] // 需要预览的图片http链接列表
     })
   },
   // 获取同学消息
@@ -257,29 +267,40 @@ Page({
       }
     })
   },
-  // 删除评论
-  // msgSubmit() {
-  //   wx.request({
-  //     url: getApp().globalData.url + '/sys/reply/{ids}',
-  //     method: 'post',
-  //     header: {
-  //       "Content-Type": "application/x-www-form-urlencoded"
-  //     },
-  //     success: function (res) {
-  //       if (res.data.code == '200') {
-  //         wx.showToast({
-  //           title: '删除成功',
-  //         })
-  //       } else {
-  //         console.log('系统错误1')
-  //       }
-
-  //     },
-  //     fail: function () {
-  //       console.log('系统错误');
-  //     }
-  //   })
-  // },
+  delete(e) {
+    var that = this;
+    wx.showModal({
+      title: '提示',
+      content: '确认删除该话题吗？',
+      success(res) {
+        if (res.confirm) {
+          wx.request({
+            url: getApp().globalData.url + '/rest/sys/message/' + e.target.dataset.id,
+            method: 'DELETE',
+            header: {
+              // "Content-Type": "application/x-www-form-urlencoded",
+              'X-AUTH-TOKEN': getApp().globalData.token
+            },
+            success: function (res) {
+              wx.showToast({
+                title: '删除成功',
+              })
+              page = 0
+              that.setData({
+                messageList: []
+              })
+              that.getMessage()
+            },
+            fail: function () {
+              console.log('系统错误');
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
 
   /**
    * 页面上拉触底事件的处理函数
@@ -309,11 +330,12 @@ Page({
   onShow: function() {
     page=0;
     this.setData({
-      messageList:[]
+      messageList:[],
+      myId:getApp().globalData.userInfo.id
     })
     this.getNotice();
     this.getMessage();
-    this.getSwiper()
+    this.getSwiper();
   },
 
   /**

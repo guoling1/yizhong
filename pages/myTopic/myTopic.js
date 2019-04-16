@@ -17,6 +17,15 @@ Page({
   onLoad: function (options) {
     page=0
     this.getMessage()
+  }, 
+  openBig(event) {
+    var src = event.currentTarget.dataset.src;//获取data-src
+    // var imgList = event.currentTarget.dataset.list;//获取data-list
+    //图片预览
+    wx.previewImage({
+      // current: src, // 当前显示图片的http链接
+      urls: [src] // 需要预览的图片http链接列表
+    })
   },
   // 获取话题
   getMessage() {
@@ -54,6 +63,40 @@ Page({
       },
       fail: function () {
         console.log('系统错误');
+      }
+    })
+  },
+  delete(e) {
+    var that = this;
+    wx.showModal({
+      title: '提示',
+      content: '确认删除该话题吗？',
+      success(res) {
+        if (res.confirm) {
+          wx.request({
+            url: getApp().globalData.url + '/rest/sys/message/' + e.target.dataset.id,
+            method: 'DELETE',
+            header: {
+              // "Content-Type": "application/x-www-form-urlencoded",
+              'X-AUTH-TOKEN': getApp().globalData.token
+            },
+            success: function (res) {
+              wx.showToast({
+                title: '删除成功',
+              })
+              page = 0
+              that.setData({
+                messageList: []
+              })
+              that.getMessage()
+            },
+            fail: function () {
+              console.log('系统错误');
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
       }
     })
   },
