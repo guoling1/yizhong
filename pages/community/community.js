@@ -71,11 +71,14 @@ Page({
   },
   openBig(event){
     var src = event.currentTarget.dataset.src;//获取data-src
-    // var imgList = event.currentTarget.dataset.list;//获取data-list
+    var imgList = event.currentTarget.dataset.list;//获取data-list
+    for(var i=0;i<imgList.length;i++){
+      imgList[i] = this.data.url + "/resources/images/actimg/"+imgList[i]
+    }
     //图片预览
     wx.previewImage({
-      // current: src, // 当前显示图片的http链接
-      urls: [src] // 需要预览的图片http链接列表
+      current: src, // 当前显示图片的http链接
+      urls: imgList // 需要预览的图片http链接列表
     })
   },
   // 获取同学消息
@@ -314,7 +317,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    
+    page = 0;
+    this.setData({
+      messageList: [],
+      myId: getApp().globalData.userInfo.id
+    })
+    this.getNotice();
+    this.getMessage();
+    this.getSwiper();
   },
 
   /**
@@ -328,14 +338,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    page=0;
-    this.setData({
-      messageList:[],
-      myId:getApp().globalData.userInfo.id
-    })
-    this.getNotice();
-    this.getMessage();
-    this.getSwiper();
+    
   },
 
   /**

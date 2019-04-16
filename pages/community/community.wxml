@@ -33,7 +33,7 @@
         </view>
       </view>
       <view class='img_group' wx-if="{{item.photo}}">
-        <image src='{{url+"/resources/images/actimg/"+itm}}' wx:for="{{item.photos}}" wx:for-item="itm" wx:key="itm" bindtap="openBig" data-src='{{url+"/resources/images/actimg/"+itm}}'></image>
+        <image src='{{url+"/resources/images/actimg/"+itm}}' wx:for="{{item.photos}}" wx:for-item="itm" wx:key="itm" bindtap="openBig" data-list='{{item.photos}}' data-src='{{url+"/resources/images/actimg/"+itm}}'></image>
       </view>
       <text class='des'>{{item.message}}</text>
       <view class='btn'>
