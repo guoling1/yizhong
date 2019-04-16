@@ -11,7 +11,7 @@ var mydata = [{
     selected: false
   }, {
     name: '重庆',
-    selected: true
+    selected: false
   },
   {
     name: '河北',
@@ -133,7 +133,7 @@ App({
     token:'',
     url: 'http://hdjincheng.6655.la',
     // url:'http://24323j007d.wicp.vip',
-    // url: 'http://tbk.o87.net',
+    // url: 'https://tbk.o87.net',
     chartsData: []
   },
   // 获取登录信息
@@ -210,7 +210,7 @@ App({
         var data = res.data.data;
         for (var i in data) {
           for (var j in mydata) {
-            if (mydata[j].name == data[i].province) {
+            if (mydata[j].name == data[i].province.substring(0,2)) {
               mydata[j].selected = true;
             }
           }

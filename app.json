@@ -20,12 +20,13 @@
     "pages/about/about",
     "pages/mask/mask",
     "pages/noticList/noticList",
-    "pages/notice/notice"
+    "pages/notice/notice",
+    "pages/topic/topic"
   ],
   "window": {
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#3e3f42",
-    "navigationBarTitleText": "邯郸一中",
+    "navigationBarTitleText": "来自一中",
     "navigationBarTextStyle": "white"
   },
   "tabBar": {

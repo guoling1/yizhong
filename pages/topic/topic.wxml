@@ -1,30 +1,8 @@
-<!--pages/community/community.wxml-->
-<view class="container">
-  <view class="page-section page-section-spacing swiper">
-    <swiper autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style='height:100%'>
-      <block wx:for="{{swiperData}}" wx:key="{{index}}">
-        <swiper-item>
-          <view class="swiper-item {{item}}">
-            <image src='{{url+"/resources/images/actimg/"+item.picUrl}}'></image>
-            <!-- <image src='../../images/banner.png'></image> -->
-          </view>
-        </swiper-item>
-      </block>
-    </swiper>
-    <!-- <view class='search'>
-      <input placeholder='搜索'></input>
-      <image src='../../images/search.png'></image>
-    </view> -->
-    <!-- <view class='notice' wx:if="{{noticeTitle!=null}}"> -->
-    <navigator url='/pages/noticList/noticList' class='notice'>
-      <image src='../../images/notice.png'></image>
-      <text>{{noticeTitle?noticeTitle:''}}</text>
-    </navigator>
-  </view>
-  <view class='content'>
+<!--pages/myTopic/myTopic.wxml-->
+<view class='content'>
     <view class='item' wx:for="{{messageList}}" wx:key="{{index}}">
       <view class='user'>
-        <navigator url='/pages/topic/topic?id={{item.userId}}'>
+        <navigator url='/pages/personalData/personalData'>
           <image src='{{item.avatarUrl}}'></image>
         </navigator>
         <view class='right'>
@@ -37,10 +15,10 @@
       </view>
       <text class='des'>{{item.message}}</text>
       <view class='btn'>
-        <view bindtap='agree' data-id="{{item.messageId}}" data-index='{{index}}'>
+        <view bindtap='agree' data-id="{{item.messageId}}">
           <image src='../../images/zan1.png' wx:if="{{item.isPoints}}" data-id="{{item.messageId}}"></image>
           <image src='../../images/zan.png' wx:else data-id="{{item.messageId}}"></image>
-          点赞{{item.numberOfPoints}}</view>
+          点赞</view>
         <view class='line'></view>
         <view bindtap='openReply' data-index='{{index}}' data-id="{{item.messageId}}"><image src='../../images/message.png' data-index='{{index}}' data-id="{{item.messageId}}"></image>评论</view>
       </view>
@@ -148,5 +126,3 @@
     </view> -->
 
   </view>
-
-</view>
